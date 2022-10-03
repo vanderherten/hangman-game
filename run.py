@@ -1,4 +1,6 @@
 import pyfiglet
+import random
+from hangman_words import WORD_LIST
 
 
 def display_hangman_logo(colorStart, colorEnd):
@@ -29,3 +31,5 @@ def apply_color(color):
 
 display_hangman_logo('red', 'reset')
 
+
+secret_word = random.choice(WORD_LIST)
