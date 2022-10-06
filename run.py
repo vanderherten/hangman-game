@@ -98,6 +98,15 @@ def check_won_game():
         game_over = True
 
 
+def give_feedback_won_game():
+    '''
+    Checks if there are no underscores (blanks) left in secret_word_display.
+    If so, feedback is given to the player that they won.
+    '''
+    if '_' not in secret_word_display:
+        print('Congratulations! You won.')
+
+
 def play_hangman():
     '''
     Creates a while loop for when variable game_over equals false.
@@ -115,6 +124,8 @@ def play_hangman():
         add_correct_guess_to_display(guess)
         
         check_won_game()
+
+        give_feedback_won_game()
 
         
 play_hangman()
