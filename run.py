@@ -143,7 +143,7 @@ def give_feedback_lost_game(guess):
     '''
     if guess not in secret_word:
         if game_over == True:
-            print('Sorry, you lost.')
+            print('Sorry, you lost.\n')
 
 
 def check_won_game():
@@ -162,7 +162,7 @@ def give_feedback_won_game():
     If so, feedback is given to the player that they won.
     '''
     if '_' not in secret_word_display:
-        print('Congratulations! You won.')
+        print('Congratulations! You won.\n')
 
 
 def display_letters_guessed(guess):
