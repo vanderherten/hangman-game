@@ -62,13 +62,13 @@ def get_player_guess():
     guess_error = True
     while guess_error:
         if not re.match('^[a-z]*$', guess):
-            print('Error! Please enter one letter from the alphabet a-z.')
+            print('\nError! Please enter one letter from the alphabet a-z.\n')
             guess = input('Guess a letter: ').lower()
         elif len(guess) > 1:
-            print('Error! Please enter one letter from the alphabet a-z.')
+            print('\nError! Please enter one letter from the alphabet a-z.\n')
             guess = input('Guess a letter: ').lower()
         elif re.match('^\s*$', guess):
-            print('Error! Please enter one letter from the alphabet a-z.')
+            print('\nError! Please enter one letter from the alphabet a-z.\n')
             guess = input('Guess a letter: ').lower()
         else:
             break
