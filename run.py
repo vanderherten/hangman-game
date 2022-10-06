@@ -1,6 +1,7 @@
 import pyfiglet
 import random
 import re
+import os
 from hangman_colors import COLORS
 from hangman_words import WORD_LIST
 from hangman_art import STICKMAN_STAGES
@@ -12,6 +13,13 @@ guess = None
 letters_guessed = []
 lives = 6
 game_over = False
+
+
+def clear_screen():
+    '''
+    Clears terminal screen
+    '''
+    os.system('clear')
 
 
 def display_hangman_logo(colorStart, colorEnd):
@@ -188,18 +196,21 @@ def play_hangman():
     '''
     Creates a while loop for when variable game_over equals false.
     In the loop while not game_over:
-    Calls functions get_player_guess(), display_hangman_logo('red', 'reset'), add_correct_guess_to_display(guess),
-    give_feedback_repeat_guess(guess), lose_life_incorrect_guess(guess), give_feedback_incorrect_guess(guess),
-    check_lost_game(guess), give_feedback_lost_game(guess), check_won_game(), give_feedback_won_game(),
-    display_stickman(lives), display_letters_guessed(guess)
+    Calls functions: get_player_guess(), clear_screen(), display_hangman_logo('red', 'reset'),
+    add_correct_guess_to_display(guess), give_feedback_repeat_guess(guess),
+    lose_life_incorrect_guess(guess), give_feedback_incorrect_guess(guess),
+    check_lost_game(guess), give_feedback_lost_game(guess), check_won_game(),
+    give_feedback_won_game(),display_stickman(lives), display_letters_guessed(guess)
     '''
     global game_over
     
     while not game_over:
         get_player_guess()
         
-        display_hangman_logo('red', 'reset')
+        clear_screen()
 
+        display_hangman_logo('red', 'reset')
+        
         add_correct_guess_to_display(guess)
 
         give_feedback_repeat_guess(guess)
