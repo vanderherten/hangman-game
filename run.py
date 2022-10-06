@@ -1,11 +1,13 @@
 import pyfiglet
 import random
+import re
 from hangman_colors import COLORS
 from hangman_words import WORD_LIST
 
 
 secret_word = None
 secret_word_display = []
+guess = None
 
 
 def display_hangman_logo(colorStart, colorEnd):
@@ -45,3 +47,31 @@ def display_secret_word():
 
 
 display_secret_word()
+
+
+def get_player_guess():
+    '''
+    Get the player's guess (letter) by creating an input 'Guess a letter: '
+    Set the player's (answer) input letter to lower case.
+    Store the answer in the guess variable.
+    Runs a while (loop) guess_error to give player input error feedback and
+    give the player a new chance to guess a letter (input)
+    '''
+    global guess
+    guess = input('Guess a letter: ').lower()
+    guess_error = True
+    while guess_error:
+        if not re.match('^[a-z]*$', guess):
+            print('Error! Please enter one letter from the alphabet a-z.')
+            guess = input('Guess a letter: ').lower()
+        elif len(guess) > 1:
+            print('Error! Please enter one letter from the alphabet a-z.')
+            guess = input('Guess a letter: ').lower()
+        elif re.match('^\s*$', guess):
+            print('Error! Please enter one letter from the alphabet a-z.')
+            guess = input('Guess a letter: ').lower()
+        else:
+            break
+
+
+get_player_guess()
