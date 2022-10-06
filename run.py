@@ -8,6 +8,7 @@ from hangman_words import WORD_LIST
 secret_word = None
 secret_word_display = []
 guess = None
+game_over = False
 
 
 def display_hangman_logo(colorStart, colorEnd):
@@ -74,9 +75,6 @@ def get_player_guess():
             break
 
 
-get_player_guess()
-
-
 def add_correct_guess_to_display(guess):
     '''
     Checks if player guessed letter is in secret word.
@@ -90,4 +88,33 @@ def add_correct_guess_to_display(guess):
     print(f"\n{' '.join(secret_word_display)}\n")
 
 
-add_correct_guess_to_display(guess)
+def check_won_game():
+    '''
+    Checks if there are no underscores (blanks) left in secret_word_display.
+    If so, sets variable game_over to True.
+    '''
+    global game_over
+    if '_' not in secret_word_display:
+        game_over = True
+
+
+def play_hangman():
+    '''
+    Creates a while loop for when variable game_over equals false.
+    In the loop while not game_over:
+    Calls functions get_player_guess(), display_hangman_logo('red', 'reset'), add_correct_guess_to_display(guess),
+    check_won_game()
+    '''
+    global game_over
+    
+    while not game_over:
+        get_player_guess()
+        
+        display_hangman_logo('red', 'reset')
+
+        add_correct_guess_to_display(guess)
+        
+        check_won_game()
+
+        
+play_hangman()
