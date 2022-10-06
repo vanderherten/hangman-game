@@ -3,6 +3,7 @@ import random
 import re
 from hangman_colors import COLORS
 from hangman_words import WORD_LIST
+from hangman_art import STICKMAN_STAGES
 
 
 secret_word = None
@@ -122,10 +123,10 @@ def play_hangman():
         display_hangman_logo('red', 'reset')
 
         add_correct_guess_to_display(guess)
-        
+
         check_won_game()
 
         give_feedback_won_game()
 
-        
+ 
 play_hangman()
