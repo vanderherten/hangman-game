@@ -5,6 +5,7 @@ from hangman_words import WORD_LIST
 
 
 secret_word = None
+secret_word_display = []
 
 
 def display_hangman_logo(colorStart, colorEnd):
@@ -31,3 +32,16 @@ def create_secret_word():
 
 
 create_secret_word()
+
+
+def display_secret_word():
+    '''
+    Displays the secret word (hidden) by replacing letters with blanks (underscores).
+    '''
+    for letter in secret_word:
+        secret_word_display.append('_')
+
+    print(f"{' '.join(secret_word_display)}\n")
+
+
+display_secret_word()
