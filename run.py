@@ -165,6 +165,14 @@ def give_feedback_won_game():
         print('Congratulations! You won.\n')
 
 
+def display_stickman(lives):
+    '''
+    Prints the variable STICKMAN_STAGES at set index (current live) 
+    with its formatted colors (.format(**COLORS)) from the dictionary COLORS.
+    '''
+    print(STICKMAN_STAGES[lives].format(**COLORS))
+
+
 def display_letters_guessed(guess):
     '''
     Checks if guess is not in letters_guessed.
@@ -183,7 +191,7 @@ def play_hangman():
     Calls functions get_player_guess(), display_hangman_logo('red', 'reset'), add_correct_guess_to_display(guess),
     give_feedback_repeat_guess(guess), lose_life_incorrect_guess(guess), give_feedback_incorrect_guess(guess),
     check_lost_game(guess), give_feedback_lost_game(guess), check_won_game(), give_feedback_won_game(),
-    display_letters_guessed(guess)
+    display_stickman(lives), display_letters_guessed(guess)
     '''
     global game_over
     
@@ -207,6 +215,8 @@ def play_hangman():
         check_won_game()
 
         give_feedback_won_game()
+
+        display_stickman(lives)
 
         display_letters_guessed(guess)
 
