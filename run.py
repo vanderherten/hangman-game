@@ -90,6 +90,15 @@ def add_correct_guess_to_display(guess):
     print(f"\n{' '.join(secret_word_display)}\n")
 
 
+def give_feedback_repeat_guess(guess):
+    '''
+    Checks if player's guess is in the variable letters_guessed.
+    If so, prints feedback if the player already guessed the letter.
+    '''
+    if guess in letters_guessed:
+        print(f"You've already guessed the letter {guess}. Try again!\n")
+
+
 def check_won_game():
     '''
     Checks if there are no underscores (blanks) left in secret_word_display.
@@ -135,6 +144,8 @@ def play_hangman():
         display_hangman_logo('red', 'reset')
 
         add_correct_guess_to_display(guess)
+
+        give_feedback_repeat_guess(guess)
 
         check_won_game()
 
