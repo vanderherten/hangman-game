@@ -10,6 +10,7 @@ secret_word = None
 secret_word_display = []
 guess = None
 letters_guessed = []
+lives = 6
 game_over = False
 
 
@@ -99,6 +100,30 @@ def give_feedback_repeat_guess(guess):
         print(f"You've already guessed the letter {guess}. Try again!\n")
 
 
+def lose_life_incorrect_guess(guess):
+    '''
+    Checks if player's guess is not in the secret_word.
+    If so, checks if guess is not in letters_guess.
+    If so, player loses a life (decrements variable lives by 1).
+    '''
+    global lives
+    if guess not in secret_word:
+        if guess not in letters_guessed:
+            lives -= 1
+
+
+def check_lost_game(guess):
+    '''
+    Checks if player's guess is not in the secret_word.
+    If so, checks if lives is equal to zero (player has no more lives).
+    If so, sets the game_over variable to True and player receives feedback they lost.
+    '''
+    global game_over
+    if guess not in secret_word:
+        if lives == 0:
+            game_over = True
+
+
 def check_won_game():
     '''
     Checks if there are no underscores (blanks) left in secret_word_display.
@@ -134,7 +159,8 @@ def play_hangman():
     Creates a while loop for when variable game_over equals false.
     In the loop while not game_over:
     Calls functions get_player_guess(), display_hangman_logo('red', 'reset'), add_correct_guess_to_display(guess),
-    give_feedback_repeat_guess(guess), check_won_game(), give_feedback_won_game(), display_letters_guessed(guess)
+    give_feedback_repeat_guess(guess), lose_life_incorrect_guess(guess), check_lost_game(guess), 
+    check_won_game(), give_feedback_won_game(), display_letters_guessed(guess)
     '''
     global game_over
     
@@ -146,6 +172,10 @@ def play_hangman():
         add_correct_guess_to_display(guess)
 
         give_feedback_repeat_guess(guess)
+
+        lose_life_incorrect_guess(guess)
+
+        check_lost_game(guess)
 
         check_won_game()
 
