@@ -134,7 +134,7 @@ def play_hangman():
     Creates a while loop for when variable game_over equals false.
     In the loop while not game_over:
     Calls functions get_player_guess(), display_hangman_logo('red', 'reset'), add_correct_guess_to_display(guess),
-    check_won_game(), give_feedback_won_game()
+    give_feedback_repeat_guess(guess), check_won_game(), give_feedback_won_game(), display_letters_guessed(guess)
     '''
     global game_over
     
