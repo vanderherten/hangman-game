@@ -4,6 +4,9 @@ from hangman_colors import COLORS
 from hangman_words import WORD_LIST
 
 
+secret_word = None
+
+
 def display_hangman_logo(colorStart, colorEnd):
     """
     Prints hangman_logo with pyfiglet module which takes ASCII text and renders it in ASCII art font 'letter'.
@@ -19,4 +22,12 @@ def display_hangman_logo(colorStart, colorEnd):
 display_hangman_logo('red', 'reset')
 
 
-secret_word = random.choice(WORD_LIST)
+def create_secret_word():
+    '''
+    Assigns a random selected word from the WORD_LIST list to the secret_word variable.
+    '''
+    global secret_word
+    secret_word = random.choice(WORD_LIST)
+
+
+create_secret_word()
