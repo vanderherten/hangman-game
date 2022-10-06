@@ -55,7 +55,7 @@ def get_player_guess():
     Set the player's (answer) input letter to lower case.
     Store the answer in the guess variable.
     Runs a while (loop) guess_error to give player input error feedback and
-    give the player a new chance to guess a letter (input)
+    give the player a new chance to guess a letter (input).
     '''
     global guess
     guess = input('Guess a letter: ').lower()
@@ -75,3 +75,19 @@ def get_player_guess():
 
 
 get_player_guess()
+
+
+def add_correct_guess_to_display(guess):
+    '''
+    Checks if player guessed letter is in secret word.
+    If so, adds the guess to display_secret_word (replaces underscore (blank) with guessed letter).
+    '''
+    for ind in range(len(secret_word)):
+        letter = secret_word[ind]
+        if letter == guess:
+            secret_word_display[ind] = letter
+    
+    print(f"\n{' '.join(secret_word_display)}\n")
+
+
+add_correct_guess_to_display(guess)
