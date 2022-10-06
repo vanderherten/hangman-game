@@ -9,6 +9,7 @@ from hangman_art import STICKMAN_STAGES
 secret_word = None
 secret_word_display = []
 guess = None
+letters_guessed = []
 game_over = False
 
 
@@ -108,6 +109,17 @@ def give_feedback_won_game():
         print('Congratulations! You won.')
 
 
+def display_letters_guessed(guess):
+    '''
+    Checks if guess is not in letters_guessed.
+    If so, adds player's guess to letters_guessed list.
+    Then Prints display Letters guessed: with guessed letters (all letters from letters_guessed list).
+    '''
+    if guess not in letters_guessed:
+        letters_guessed.append(guess)
+    print(f"Letters guessed: {', '.join(map(str, letters_guessed))}\n")
+
+
 def play_hangman():
     '''
     Creates a while loop for when variable game_over equals false.
@@ -127,6 +139,8 @@ def play_hangman():
         check_won_game()
 
         give_feedback_won_game()
+
+        display_letters_guessed(guess)
 
  
 play_hangman()
