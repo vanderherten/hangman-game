@@ -17,9 +17,16 @@ game_over = False
 
 def clear_screen():
     '''
-    Clears terminal screen
+    Clears terminal screen.
+    First determines whether the os (operating system) is windows or linux or mac.
+    Then executes clear screen code accordingly.
+    If os.name is 'posix' which is for linux or mac, it executes specific os code.
+    else will execute clear screen code for windows.
     '''
-    os.system('clear')
+    if os.name == 'posix':
+        os.system('clear')
+    else:
+        os.system('cls')
 
 
 def display_hangman_logo(colorStart, colorEnd):
