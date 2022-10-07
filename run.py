@@ -45,7 +45,7 @@ def display_hangman_logo(colorStart, colorEnd):
 display_hangman_logo('red', 'reset')
 
 
-def get_player_word_lenght():
+def get_player_word_length():
     '''
     Gets the player's word length choice (number from 4 to 9) for the game.
     Player's input gets stored in the variable word_length.
@@ -66,7 +66,7 @@ def get_player_word_lenght():
             break
 
 
-get_player_word_lenght()
+get_player_word_length()
 
 
 clear_screen()
