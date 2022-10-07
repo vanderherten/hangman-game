@@ -3,10 +3,11 @@ import random
 import re
 import os
 from hangman_colors import COLORS
-from hangman_words import WORD_LIST
+from hangman_words import WORD_LISTS
 from hangman_art import STICKMAN_STAGES
 
 
+word_length = None
 secret_word = None
 secret_word_display = []
 guess = None
@@ -44,12 +45,44 @@ def display_hangman_logo(colorStart, colorEnd):
 display_hangman_logo('red', 'reset')
 
 
+def get_player_word_lenght():
+    '''
+    Gets the player's word length choice (number from 4 to 9) for the game.
+    Player's input gets stored in the variable word_length.
+    Runs a while (loop) word_length_error to give player input error feedback and
+    give the player a new chance to choose a word length for the game (input).
+    '''
+    global word_length
+    word_length = input("\nPlease choose the game's word length. Pick a number from 4 to 9: ")
+    word_length_error = True
+    while word_length_error:
+        if not re.match('^[4-9]*$', word_length):
+            print('\nError! Please enter one whole number from 4 to 9.\n')
+            word_length = input("Please choose the game's word length. Pick a number from 4 to 9: ")
+        elif re.match('^\s*$', word_length):
+            print('\nError! Please enter one whole number from 4 to 9.\n')
+            word_length = input("Please choose the game's word length. Pick a number from 4 to 9: ")
+        else:
+            break
+
+
+get_player_word_lenght()
+
+
+clear_screen()
+
+
+display_hangman_logo('red', 'reset')
+
+
 def create_secret_word():
     '''
-    Assigns a random selected word from the WORD_LIST list to the secret_word variable.
+    Assigns a random selected word from the WORD_LISTS list to the secret_word variable.
+    The player's chosen word length get's used as an index (int(word_length - 4)) to pick a random word
+    from the correct word length list.
     '''
     global secret_word
-    secret_word = random.choice(WORD_LIST)
+    secret_word = random.choice(WORD_LISTS[int(word_length) - 4])  
 
 
 create_secret_word()
@@ -62,7 +95,7 @@ def display_secret_word():
     for letter in secret_word:
         secret_word_display.append('_')
 
-    print(f"{' '.join(secret_word_display)}\n")
+    print(f"\n{' '.join(secret_word_display)}\n")
 
 
 display_secret_word()
