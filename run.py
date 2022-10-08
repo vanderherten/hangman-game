@@ -6,7 +6,8 @@ from hangman_colors import COLORS
 from hangman_words import WORD_LISTS
 from hangman_art import STICKMAN_STAGES
 
-
+hi_score = 0
+current_score = 0
 word_length = None
 secret_word = None
 secret_word_display = []
@@ -45,6 +46,21 @@ def display_hangman_logo(colorStart, colorEnd):
 display_hangman_logo('red', 'reset')
 
 
+def display_scoreboard(hi_score, current_score):
+    '''
+    Displays Hangman Game's Scoreboard.
+    Prints 'High Score: {hi_score}'
+    Prints 'Current Max Score: {current_score}'
+    The Current Max Score is the maximum score attainable with player's chosen word length,
+    and will decrease when player loses lives.
+    '''
+    print(f'\nHigh Score: {hi_score}')
+    print(f'\nCurrent Max Score: {current_score}\n')
+
+
+display_scoreboard(hi_score, current_score)
+
+
 def get_player_word_length():
     '''
     Gets the player's word length choice (number from 4 to 9) for the game.
@@ -75,6 +91,42 @@ clear_screen()
 display_hangman_logo('red', 'reset')
 
 
+def update_current_score():
+    '''
+    Calculates current_score according to word_length points per life.
+    Returns current_score
+    '''
+    global word_length, lives, current_score
+    if word_length == '4':
+        current_score = 10 * lives
+    if word_length == '5':
+        current_score = 20 * lives
+    if word_length == '6':
+        current_score = 30 * lives
+    if word_length == '7':
+        current_score = 40 * lives
+    if word_length == '8':
+        current_score = 50 * lives
+    if word_length == '9':
+        current_score = 60 * lives
+    return current_score
+
+
+display_scoreboard(hi_score, update_current_score())
+
+
+def update_hi_score():
+    '''
+    Checks if hi_score is smaller than current_score
+    If so, updates hi_score to current_score
+    Returns hi_score
+    '''
+    global hi_score
+    if hi_score < current_score:
+        hi_score = current_score
+    return hi_score
+
+
 def create_secret_word():
     '''
     Assigns a random selected word from the WORD_LISTS list to the secret_word variable.
@@ -99,6 +151,17 @@ def display_secret_word():
 
 
 display_secret_word()
+
+
+def display_stickman(lives):
+    '''
+    Prints the variable STICKMAN_STAGES at set index (current live) 
+    with its formatted colors (.format(**COLORS)) from the dictionary COLORS.
+    '''
+    print(STICKMAN_STAGES[lives].format(**COLORS))
+
+
+display_stickman(lives)
 
 
 def get_player_guess():
@@ -145,7 +208,7 @@ def give_feedback_repeat_guess(guess):
     If so, prints feedback if the player already guessed the letter.
     '''
     if guess in letters_guessed:
-        print(f"You've already guessed the letter {guess}. Try again!\n")
+        print(f"\nYou've already guessed the letter {guess}. Try again!\n")
 
 
 def lose_life_incorrect_guess(guess):
@@ -168,7 +231,7 @@ def give_feedback_incorrect_guess(guess):
     '''
     if guess not in secret_word:
         if guess not in letters_guessed:
-            print(f"You lost a life! Your guess is not in the secret word.\n")
+            print(f"\nYou lost a life! Your guess is not in the secret word.\n")
 
 
 def check_lost_game(guess):
@@ -210,15 +273,7 @@ def give_feedback_won_game():
     If so, feedback is given to the player that they won.
     '''
     if '_' not in secret_word_display:
-        print('Congratulations! You won.\n')
-
-
-def display_stickman(lives):
-    '''
-    Prints the variable STICKMAN_STAGES at set index (current live) 
-    with its formatted colors (.format(**COLORS)) from the dictionary COLORS.
-    '''
-    print(STICKMAN_STAGES[lives].format(**COLORS))
+        print('\nCongratulations! You won.\n')
 
 
 def display_letters_guessed(guess):
@@ -237,10 +292,12 @@ def play_hangman():
     Creates a while loop for when variable game_over equals false.
     In the loop while not game_over:
     Calls functions: get_player_guess(), clear_screen(), display_hangman_logo('red', 'reset'),
-    add_correct_guess_to_display(guess), give_feedback_repeat_guess(guess),
-    lose_life_incorrect_guess(guess), give_feedback_incorrect_guess(guess),
-    check_lost_game(guess), give_feedback_lost_game(guess), check_won_game(),
-    give_feedback_won_game(),display_stickman(lives), display_letters_guessed(guess)
+    lose_life_incorrect_guess(guess), display_scoreboard(hi_score, update_current_score()),
+    add_correct_guess_to_display(guess), give_feedback_repeat_guess(guess)
+    give_feedback_incorrect_guess(guess), check_lost_game(guess), give_feedback_lost_game(guess), 
+    check_won_game(), give_feedback_won_game(),display_stickman(lives), display_letters_guessed(guess)
+    When game_over is True (after exit while loop):
+    Calls function: update_hi_score()
     '''
     global game_over
     
@@ -250,12 +307,14 @@ def play_hangman():
         clear_screen()
 
         display_hangman_logo('red', 'reset')
-        
+
+        lose_life_incorrect_guess(guess)
+
+        display_scoreboard(hi_score, update_current_score())
+
         add_correct_guess_to_display(guess)
 
         give_feedback_repeat_guess(guess)
-
-        lose_life_incorrect_guess(guess)
 
         give_feedback_incorrect_guess(guess)
 
@@ -270,6 +329,70 @@ def play_hangman():
         display_stickman(lives)
 
         display_letters_guessed(guess)
+    
+    update_hi_score()
 
- 
+
 play_hangman()
+
+
+def replay_hangman():
+    '''
+    Ask the player: input('Would you like to play again to increase your score? y/n: ').lower()
+    Gives the player feedback it there is a player_answer_error
+    While (loop) the player_answer is 'y':
+    Resets global variables: current_score = 0, secret_word = None, secret_word_display = [],
+    guess = None, letters_guessed = [], lives = 6, game_over = False
+    Then the while loop calls the functions: clear_screen(), display_hangman_logo('red', 'reset'),
+    display_scoreboard(update_hi_score(), current_score), get_player_word_length(), clear_screen(),
+    display_hangman_logo('red', 'reset'), display_scoreboard(update_hi_score(), update_current_score()),
+    create_secret_word(), display_secret_word(), display_stickman(lives), play_hangman()
+    Then the while loop calls: player_answer = input('Would you like to play again to increase your high score? y/n: ').lower()
+    '''
+    global hi_score, current_score, secret_word, secret_word_display, guess, letters_guessed, lives, game_over
+    
+    player_answer = input('Would you like to play again to increase your score? y/n: ').lower()
+    player_answer_error = True
+
+    while player_answer_error:
+        if player_answer != 'y' and player_answer != 'n':
+            print('\nError! Please answer with either the letter y or n.\n')
+            player_answer = input('Would you like to play again to increase your high score? y/n: ').lower()
+        else:
+            break
+
+    while player_answer == 'y':
+        current_score = 0
+        secret_word = None
+        secret_word_display = []
+        guess = None
+        letters_guessed = []
+        lives = 6
+        game_over = False
+        
+        clear_screen()
+
+        display_hangman_logo('red', 'reset')
+        
+        display_scoreboard(update_hi_score(), current_score)
+
+        get_player_word_length()
+
+        clear_screen()
+
+        display_hangman_logo('red', 'reset')
+        
+        display_scoreboard(update_hi_score(), update_current_score())
+
+        create_secret_word()
+
+        display_secret_word()
+
+        display_stickman(lives)
+
+        play_hangman()
+
+        player_answer = input('Would you like to play again to increase your high score? y/n: ').lower()
+
+
+replay_hangman()
