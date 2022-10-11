@@ -184,25 +184,29 @@ display_stickman(lives)
 
 def get_player_guess():
     '''
-    Get the player's guess (letter) by creating an input 'Guess a letter: '
-    Set the player's (answer) input letter to lower case.
-    Store the answer in the guess variable.
-    Runs a while (loop) guess_error to give player input error feedback and
-    give the player a new chance to guess a letter (input).
+    Get the player's guess (letter): guess = input('Guess a letter: ').lower()
+    Stores the answer in the guess variable.
+    Runs a while (loop) to give the player input error feedback and
+    give the player a new chance to guess a letter.
     '''
     global guess
-    guess = input('Guess a letter: ').lower()
-    guess_error = True
-    while guess_error:
-        if not re.match('^[a-z]*$', guess):
-            print('\nError! Please enter one letter from the alphabet a-z.\n')
+    while True:
+        try:
             guess = input('Guess a letter: ').lower()
-        elif len(guess) > 1:
-            print('\nError! Please enter one letter from the alphabet a-z.\n')
-            guess = input('Guess a letter: ').lower()
-        elif re.match('^\s*$', guess):
-            print('\nError! Please enter one letter from the alphabet a-z.\n')
-            guess = input('Guess a letter: ').lower()
+            while True:
+                if not re.match('^[a-z]*$', guess):
+                    print('\nError! Please enter one letter from the alphabet a-z.\n')
+                    guess = input('Guess a letter: ').lower()
+                elif len(guess) > 1:
+                    print('\nError! Please enter one letter from the alphabet a-z.\n')
+                    guess = input('Guess a letter: ').lower()
+                elif re.match('^\s*$', guess):
+                    print('\nError! Please enter one letter from the alphabet a-z.\n')
+                    guess = input('Guess a letter: ').lower()
+                else:
+                    break
+        except Exception as e:
+            print('\nError! {e}! Please enter one letter from the alphabet a-z.\n')
         else:
             break
 
