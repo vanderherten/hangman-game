@@ -331,6 +331,18 @@ def give_feedback_lost_game(guess):
             print('Sorry, you lost.\n')
 
 
+def reveal_secret_word(guess):
+    '''
+    Checks if player's guess is not in the secret_word.
+    If so, checks if game_over variable is equal to True.
+    If so, the secret word is revealed to the player:
+    print(f'The secret word is {secret_word}.\n')
+    '''
+    if guess not in secret_word:
+        if game_over == True:
+            print(f'The secret word is {secret_word}.\n')
+
+
 def check_won_game():
     '''
     Checks if there are no underscores (blanks) left in secret_word_display.
@@ -405,6 +417,8 @@ def play_hangman(word_length, hint):
         hint = give_player_hint(hint)
 
         give_feedback_lost_game(guess)
+
+        reveal_secret_word(guess)
 
         give_feedback_won_game()
     
