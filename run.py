@@ -90,8 +90,8 @@ def get_player_word_length():
                     word_length_choice = input("\nPlease choose the game's word length. Pick a number from 4 to 9: ")
                 else:
                     break
-        except:
-            print('\nError! Please enter one whole number from 4 to 9.\n')
+        except Exception as e:
+            print(f'\nError! {e}! Please enter one whole number from 4 to 9.\n')
         else:
             break
     
