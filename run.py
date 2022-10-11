@@ -8,6 +8,8 @@ from hangman_art import STICKMAN_STAGES
 # Modules requests & BeautifulSoup are for the synonym hint feature
 import requests
 from bs4 import BeautifulSoup
+# Module PyDictionary for the secret word definition feature
+from PyDictionary import PyDictionary
 
 hi_score = 0
 current_score = 0
@@ -343,6 +345,49 @@ def reveal_secret_word(guess):
             print(f'The secret word is {secret_word}.\n')
 
 
+def give_player_word_definition(guess):
+    '''
+    Checks if guess is not in the secret_word:
+    If so, checks if game_over == True:
+    If so, asks the player input(f'Would you like to see the definition for {secret_word}? y/n: ').lower()
+    Then handles answer error cases with a while loop and gives player feedback.
+    If the player answers 'y', the definition for the secret word will be displayed 
+    (web scraped from thesaurus.com with use of PyDictionary module).
+    The player will be given feedback if the scraped definition dictionary is empty:
+    print(f'Sorry, there is no definition to display for {secret_word}.').
+    '''
+    if guess not in secret_word:
+        if game_over == True:
+            while True:
+                try:
+                    player_answer_definition = input(f'Would you like to see the definition for {secret_word}? y/n: ').lower()
+                    while True:
+                        if player_answer_definition != 'y' and player_answer_definition != 'n':
+                            print('\nError! Please answer with either the letter y (for yes) or n (for no).')
+                            player_answer_definition = input(f'Would you like to see the definition for {secret_word}? y/n: ').lower()
+                        elif re.match('^\s*$', player_answer_definition):
+                            print('\nError! Please answer with either the letter y (for yes) or n (for no).')
+                            player_answer_definition = input(f'Would you like to see the definition for {secret_word}? y/n: ').lower()
+                        elif len(player_answer_definition) > 1:
+                            print('\nError! Please answer with either the letter y (for yes) or n (for no).')
+                            player_answer_definition = input(f'Would you like to see the definition for {secret_word}? y/n: ').lower()
+                        else:
+                            break
+                except Exception as e:
+                    print(f'\nError! {e}! Please answer with either the letter y (for yes) or n (for no).')
+                else:
+                    break
+            if player_answer_definition == 'y':
+                print(f'Retrieving the definition for {secret_word}...')
+                dictionary = PyDictionary()
+                definition_dictionary = dictionary.meaning(secret_word)
+                definition = '\n'.join(f'{key}: {value}' for key, value in definition_dictionary.items())
+                if definition_dictionary == {}:
+                    print(f'Sorry, there is no definition to display for {secret_word}.')
+                else:
+                    print(f'\n{definition}\n')
+
+
 def check_won_game():
     '''
     Checks if there are no underscores (blanks) left in secret_word_display.
@@ -382,7 +427,7 @@ def play_hangman(word_length, hint):
     add_correct_guess_to_display(guess), display_stickman(lives), give_feedback_repeat_guess(guess)
     give_feedback_incorrect_guess(guess), check_lost_game(guess), check_won_game(),
     display_letters_guessed(guess), hint = give_player_hint(hint), give_feedback_lost_game(guess),
-    give_feedback_won_game().
+    reveal_secret_word(guess), give_player_word_definition(guess), give_feedback_won_game().
     When game_over is True (after exit while loop):
     Calls function: update_hi_score()
     '''
@@ -419,6 +464,8 @@ def play_hangman(word_length, hint):
         give_feedback_lost_game(guess)
 
         reveal_secret_word(guess)
+
+        give_player_word_definition(guess)
 
         give_feedback_won_game()
     
