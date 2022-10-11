@@ -206,7 +206,7 @@ def get_player_guess():
                 else:
                     break
         except Exception as e:
-            print('\nError! {e}! Please enter one letter from the alphabet a-z.\n')
+            print(f'\nError! {e}! Please enter one letter from the alphabet a-z.\n')
         else:
             break
 
