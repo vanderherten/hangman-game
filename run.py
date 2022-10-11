@@ -301,6 +301,7 @@ def give_player_hint(hint):
                 else:
                     break
             if player_answer_hint == 'y':
+                print('Retrieving the hint...')
                 synonyms_list = synonyms(secret_word)
                 if synonyms_list == []:
                     print('Sorry, there is no hint to display for this secret word.')
