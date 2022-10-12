@@ -495,33 +495,56 @@ def play_hangman(word_length, hint, game_over, guess, secret_word, secret_word_d
 play_hangman(word_length, hint, game_over, guess, secret_word, secret_word_display)
 
 
+def get_player_replay():
+    '''
+    Gets the player answer whether wants to replay the game to increase their hi-score:
+    player_answer_replay = input('Would you like to play again to increase your score? y/n: ').lower()
+    Handles answer error cases with a while True loop (try, except Exception as e, else) and gives the player feedback.
+    Function returns player_answer_replay variable
+    '''
+    while True:
+        try:
+            player_answer_replay = input('Would you like to play again to increase your score? y/n: ').lower()
+            while True:
+                if player_answer_replay != 'y' and player_answer_replay != 'n':
+                    print('\nError! Please answer with either the letter y (for yes) or n (for no).')
+                    player_answer_replay = input('Would you like to play again to increase your score? y/n: ').lower()
+                elif re.match('^\s*$', player_answer_replay):
+                    print('\nError! Please answer with either the letter y (for yes) or n (for no).')
+                    player_answer_replay = input('Would you like to play again to increase your score? y/n: ').lower()
+                elif len(player_answer_replay) > 1:
+                    print('\nError! Please answer with either the letter y (for yes) or n (for no).')
+                    player_answer_replay = input('Would you like to play again to increase your score? y/n: ').lower()
+                else:
+                    break
+        except Exception as e:
+            print(f'\nError! {e}! Please answer with either the letter y (for yes) or n (for no).')
+        else:
+            break
+    
+    return player_answer_replay
+
+
 def replay_hangman(word_length, game_over, guess, secret_word, secret_word_display):
     '''
-    Ask the player: input('Would you like to play again to increase your score? y/n: ').lower()
-    Gives the player feedback if there is a player_answer_error
-    While (loop) the player_answer is 'y':
+    sets the get_player_replay() function to the player_answer_replay variable:
+    player_answer_replay = get_player_replay()
+    The get_player_replay() function ask the player: input('Would you like to play again to increase your score? y/n: ').lower()
+    and gives the player feedback if there is a an input answer error.
+    While (loop) the player_answer_replay is 'y':
     Resets variables: current_score = 0, secret_word = None, secret_word_display = [],
     letters_guessed = [], lives = 6, game_over = False
     Then the while loop calls the functions: clear_screen(), display_hangman_logo('red', 'reset'),
     display_scoreboard(update_hi_score(), current_score), word_length = get_player_word_length(), clear_screen(),
     display_hangman_logo('red', 'reset'), display_scoreboard(update_hi_score(), update_current_score(word_length)),
     secret_word = create_secret_word(word_length, secret_word), display_secret_word(secret_word, secret_word_display), 
-    display_stickman(lives), play_hangman(word_length, hint, game_over, guess, secret_word, secret_word_display)
-    Then the while loop calls: player_answer = input('Would you like to play again to increase your high score? y/n: ').lower()
+    display_stickman(lives), play_hangman(word_length, hint, game_over, guess, secret_word, secret_word_display),
+    player_answer_replay = get_player_replay()
     '''
     global hi_score, current_score, letters_guessed, lives
     
-    player_answer = input('Would you like to play again to increase your score? y/n: ').lower()
-    player_answer_error = True
-
-    while player_answer_error:
-        if player_answer != 'y' and player_answer != 'n':
-            print('\nError! Please answer with either the letter y or n.\n')
-            player_answer = input('Would you like to play again to increase your high score? y/n: ').lower()
-        else:
-            break
-
-    while player_answer == 'y':
+    player_answer_replay = get_player_replay()
+    while player_answer_replay == 'y':
         current_score = 0
         secret_word = None
         secret_word_display = []
@@ -551,7 +574,7 @@ def replay_hangman(word_length, game_over, guess, secret_word, secret_word_displ
 
         play_hangman(word_length, hint, game_over, guess, secret_word, secret_word_display)
 
-        player_answer = input('Would you like to play again to increase your high score? y/n: ').lower()
+        player_answer_replay = get_player_replay()
 
 
 replay_hangman(word_length, game_over, guess, secret_word, secret_word_display)
