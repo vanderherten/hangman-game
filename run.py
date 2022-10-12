@@ -134,15 +134,15 @@ def update_current_score(word_length):
 display_scoreboard(hi_score, update_current_score(word_length))
 
 
-def update_hi_score():
+def update_hi_score(hi_score):
     '''
     Checks if hi_score is smaller than current_score
     If so, updates hi_score to current_score
-    Returns hi_score
+    Function returns hi_score variable
     '''
-    global hi_score
     if hi_score < current_score:
         hi_score = current_score
+
     return hi_score
 
 
@@ -437,7 +437,7 @@ def display_letters_guessed(guess):
     print(f"Letters guessed: {', '.join(map(str, letters_guessed))}\n")
 
 
-def play_hangman(word_length, hint, game_over, guess, secret_word, secret_word_display):
+def play_hangman(word_length, hint, game_over, guess, secret_word, secret_word_display, hi_score):
     '''
     Sets the variable hint = True.
     Creates a while loop for when variable game_over equals false.
@@ -450,7 +450,8 @@ def play_hangman(word_length, hint, game_over, guess, secret_word, secret_word_d
     give_feedback_lost_game(guess, game_over, secret_word), reveal_secret_word(guess, game_over, secret_word), 
     give_player_word_definition(guess, game_over, secret_word), give_feedback_won_game(secret_word_display).
     When game_over is True (after exit while loop):
-    Calls function: update_hi_score()
+    hi_score = update_hi_score(hi_score)
+    Function returns hi_score variable
     '''
     hint = True
 
@@ -489,10 +490,12 @@ def play_hangman(word_length, hint, game_over, guess, secret_word, secret_word_d
 
         give_feedback_won_game(secret_word_display)
     
-    update_hi_score()
+    hi_score = update_hi_score(hi_score)
+
+    return hi_score
 
 
-play_hangman(word_length, hint, game_over, guess, secret_word, secret_word_display)
+hi_score = play_hangman(word_length, hint, game_over, guess, secret_word, secret_word_display, hi_score)
 
 
 def get_player_replay():
@@ -525,7 +528,7 @@ def get_player_replay():
     return player_answer_replay
 
 
-def replay_hangman(word_length, game_over, guess, secret_word, secret_word_display):
+def replay_hangman(word_length, game_over, guess, secret_word, secret_word_display, hi_score):
     '''
     sets the get_player_replay() function to the player_answer_replay variable:
     player_answer_replay = get_player_replay()
@@ -535,15 +538,16 @@ def replay_hangman(word_length, game_over, guess, secret_word, secret_word_displ
     Resets variables: current_score = 0, secret_word = None, secret_word_display = [],
     letters_guessed = [], lives = 6, game_over = False
     Then the while loop calls the functions: clear_screen(), display_hangman_logo('red', 'reset'),
-    display_scoreboard(update_hi_score(), current_score), word_length = get_player_word_length(), clear_screen(),
-    display_hangman_logo('red', 'reset'), display_scoreboard(update_hi_score(), update_current_score(word_length)),
+    display_scoreboard(hi_score, current_score), word_length = get_player_word_length(), clear_screen(),
+    display_hangman_logo('red', 'reset'), display_scoreboard(hi_score, update_current_score(word_length)),
     secret_word = create_secret_word(word_length, secret_word), display_secret_word(secret_word, secret_word_display), 
-    display_stickman(lives), play_hangman(word_length, hint, game_over, guess, secret_word, secret_word_display),
+    display_stickman(lives), hi_score = play_hangman(word_length, hint, game_over, guess, secret_word, secret_word_display, hi_score),
     player_answer_replay = get_player_replay()
     '''
-    global hi_score, current_score, letters_guessed, lives
+    global current_score, letters_guessed, lives
     
     player_answer_replay = get_player_replay()
+
     while player_answer_replay == 'y':
         current_score = 0
         secret_word = None
@@ -556,7 +560,7 @@ def replay_hangman(word_length, game_over, guess, secret_word, secret_word_displ
 
         display_hangman_logo('red', 'reset')
         
-        display_scoreboard(update_hi_score(), current_score)
+        display_scoreboard(hi_score, current_score)
 
         word_length = get_player_word_length()
         
@@ -564,7 +568,7 @@ def replay_hangman(word_length, game_over, guess, secret_word, secret_word_displ
 
         display_hangman_logo('red', 'reset')
         
-        display_scoreboard(update_hi_score(), update_current_score(word_length))
+        display_scoreboard(hi_score, update_current_score(word_length))
 
         secret_word = create_secret_word(word_length, secret_word)
 
@@ -572,9 +576,9 @@ def replay_hangman(word_length, game_over, guess, secret_word, secret_word_displ
 
         display_stickman(lives)
 
-        play_hangman(word_length, hint, game_over, guess, secret_word, secret_word_display)
+        hi_score = play_hangman(word_length, hint, game_over, guess, secret_word, secret_word_display, hi_score)
 
         player_answer_replay = get_player_replay()
 
 
-replay_hangman(word_length, game_over, guess, secret_word, secret_word_display)
+replay_hangman(word_length, game_over, guess, secret_word, secret_word_display, hi_score)
