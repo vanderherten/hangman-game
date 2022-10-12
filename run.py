@@ -146,30 +146,36 @@ def update_hi_score():
     return hi_score
 
 
-def create_secret_word(word_length):
+def create_secret_word(word_length, secret_word):
     '''
     Assigns a random selected word from the WORD_LISTS list to the secret_word variable.
     The player's chosen word length get's used as an index (int(word_length - 4)) to pick a random word
     from the correct word length list.
+    Function returns secret_word variable.
     '''
-    global secret_word
-    secret_word = random.choice(WORD_LISTS[word_length - 4])  
+    secret_word = random.choice(WORD_LISTS[word_length - 4])
+
+    return secret_word  
 
 
-create_secret_word(word_length)
+secret_word = create_secret_word(word_length, secret_word)
 
 
-def display_secret_word():
+def display_secret_word(secret_word, secret_word_display):
     '''
-    Displays the secret word (hidden) by replacing letters with blanks (underscores).
+    Displays (prints) the secret word (hidden) by replacing letters with blanks (underscores).
+    When printing: print(f"\n{' '.join(secret_word_display)}\n") creates string from list.
+    Returns secret_word_display variable.
     '''
     for letter in secret_word:
         secret_word_display.append('_')
 
     print(f"\n{' '.join(secret_word_display)}\n")
 
+    return secret_word_display
 
-display_secret_word()
+
+display_secret_word(secret_word, secret_word_display)
 
 
 def display_stickman(lives):
@@ -214,7 +220,7 @@ def get_player_guess(guess):
     return guess
 
 
-def add_correct_guess_to_display(guess):
+def add_correct_guess_to_display(guess, secret_word, secret_word_display):
     '''
     Checks if player guessed letter is in secret word.
     If so, adds the guess to display_secret_word (replaces underscore (blank) with guessed letter).
@@ -236,7 +242,7 @@ def give_feedback_repeat_guess(guess):
         print(f"\nYou've already guessed the letter {guess}. Try again!\n")
 
 
-def lose_life_incorrect_guess(guess):
+def lose_life_incorrect_guess(guess, secret_word):
     '''
     Checks if player's guess is not in the secret_word.
     If so, checks if guess is not in letters_guess.
@@ -248,7 +254,7 @@ def lose_life_incorrect_guess(guess):
             lives -= 1
 
 
-def give_feedback_incorrect_guess(guess):
+def give_feedback_incorrect_guess(guess, secret_word):
     '''
     Checks if player's guess is not in the secret_word.
     Is so, checks if guess is not in letters_guessed.
@@ -271,7 +277,7 @@ def synonyms(secret_word):
 # End code used from other source
 
 
-def give_player_hint(hint):
+def give_player_hint(hint, secret_word):
     '''
     Checks if player only has one life left.
     If so, Asks the player input('Would you like to get a hint? y/n: ').lower()
@@ -315,10 +321,10 @@ def give_player_hint(hint):
     return hint
 
 
-hint = give_player_hint(hint)
+hint = give_player_hint(hint, secret_word)
 
 
-def check_lost_game(guess, game_over):
+def check_lost_game(guess, game_over, secret_word):
     '''
     Checks if player's guess is not in the secret_word.
     If so, checks if lives is equal to zero (player has no more lives).
@@ -328,10 +334,11 @@ def check_lost_game(guess, game_over):
     if guess not in secret_word:
         if lives == 0:
             game_over = True
+    
     return game_over
 
 
-def give_feedback_lost_game(guess, game_over):
+def give_feedback_lost_game(guess, game_over, secret_word):
     '''
     Checks if player's guess is not in the secret_word.
     If so, checks if game_over variable is equal to True.
@@ -342,7 +349,7 @@ def give_feedback_lost_game(guess, game_over):
             print('Sorry, you lost.\n')
 
 
-def reveal_secret_word(guess, game_over):
+def reveal_secret_word(guess, game_over, secret_word):
     '''
     Checks if player's guess is not in the secret_word.
     If so, checks if game_over variable is equal to True.
@@ -354,7 +361,7 @@ def reveal_secret_word(guess, game_over):
             print(f'The secret word is {secret_word}.\n')
 
 
-def give_player_word_definition(guess, game_over):
+def give_player_word_definition(guess, game_over, secret_word):
     '''
     Checks if guess is not in the secret_word:
     If so, checks if game_over == True:
@@ -397,7 +404,7 @@ def give_player_word_definition(guess, game_over):
                     print(f'\n{definition}\n')
 
 
-def check_won_game(game_over):
+def check_won_game(game_over, secret_word_display):
     '''
     Checks if there are no underscores (blanks) left in secret_word_display.
     If so, sets variable game_over to True.
@@ -405,10 +412,11 @@ def check_won_game(game_over):
     '''
     if '_' not in secret_word_display:
         game_over = True
+
     return game_over
 
 
-def give_feedback_won_game():
+def give_feedback_won_game(secret_word_display):
     '''
     Checks if there are no underscores (blanks) left in secret_word_display.
     If so, feedback is given to the player that they won.
@@ -425,21 +433,22 @@ def display_letters_guessed(guess):
     '''
     if guess not in letters_guessed:
         letters_guessed.append(guess)
+
     print(f"Letters guessed: {', '.join(map(str, letters_guessed))}\n")
 
 
-def play_hangman(word_length, hint, game_over, guess):
+def play_hangman(word_length, hint, game_over, guess, secret_word, secret_word_display):
     '''
     Sets the variable hint = True.
     Creates a while loop for when variable game_over equals false.
     In the loop while not game_over:
     Calls functions: guess = get_player_guess(), clear_screen(), display_hangman_logo('red', 'reset'),
-    lose_life_incorrect_guess(guess), display_scoreboard(hi_score, update_current_score(word_length)),
-    add_correct_guess_to_display(guess), display_stickman(lives), give_feedback_repeat_guess(guess)
-    give_feedback_incorrect_guess(guess), game_over = check_lost_game(guess, game_over), 
-    game_over = check_won_game(game_over), display_letters_guessed(guess), hint = give_player_hint(hint), 
-    give_feedback_lost_game(guess, game_over), reveal_secret_word(guess, game_over), 
-    give_player_word_definition(guess, game_over), give_feedback_won_game().
+    lose_life_incorrect_guess(guess, secret_word), display_scoreboard(hi_score, update_current_score(word_length)),
+    add_correct_guess_to_display(guess, secret_word, secret_word_display), display_stickman(lives), give_feedback_repeat_guess(guess)
+    give_feedback_incorrect_guess(guess, secret_word), game_over = check_lost_game(guess, game_over, secret_word), 
+    game_over = check_won_game(game_over, secret_word_display), display_letters_guessed(guess), hint = give_player_hint(hint, secret_word), 
+    give_feedback_lost_game(guess, game_over, secret_word), reveal_secret_word(guess, game_over, secret_word), 
+    give_player_word_definition(guess, game_over, secret_word), give_feedback_won_game(secret_word_display).
     When game_over is True (after exit while loop):
     Calls function: update_hi_score()
     '''
@@ -452,41 +461,41 @@ def play_hangman(word_length, hint, game_over, guess):
 
         display_hangman_logo('red', 'reset')
         
-        lose_life_incorrect_guess(guess)
+        lose_life_incorrect_guess(guess, secret_word)
 
         display_scoreboard(hi_score, update_current_score(word_length))
 
-        add_correct_guess_to_display(guess)
+        add_correct_guess_to_display(guess, secret_word, secret_word_display)
 
         display_stickman(lives)
 
         give_feedback_repeat_guess(guess)
 
-        give_feedback_incorrect_guess(guess)
+        give_feedback_incorrect_guess(guess, secret_word)
 
-        game_over = check_lost_game(guess, game_over)
+        game_over = check_lost_game(guess, game_over, secret_word)
 
-        game_over = check_won_game(game_over)
+        game_over = check_won_game(game_over, secret_word_display)
 
         display_letters_guessed(guess)
 
-        hint = give_player_hint(hint)
+        hint = give_player_hint(hint, secret_word)
 
-        give_feedback_lost_game(guess, game_over)
+        give_feedback_lost_game(guess, game_over, secret_word)
 
-        reveal_secret_word(guess, game_over)
+        reveal_secret_word(guess, game_over, secret_word)
 
-        give_player_word_definition(guess, game_over)
+        give_player_word_definition(guess, game_over, secret_word)
 
-        give_feedback_won_game()
+        give_feedback_won_game(secret_word_display)
     
     update_hi_score()
 
 
-play_hangman(word_length, hint, game_over, guess)
+play_hangman(word_length, hint, game_over, guess, secret_word, secret_word_display)
 
 
-def replay_hangman(word_length, game_over, guess):
+def replay_hangman(word_length, game_over, guess, secret_word, secret_word_display):
     '''
     Ask the player: input('Would you like to play again to increase your score? y/n: ').lower()
     Gives the player feedback if there is a player_answer_error
@@ -496,11 +505,11 @@ def replay_hangman(word_length, game_over, guess):
     Then the while loop calls the functions: clear_screen(), display_hangman_logo('red', 'reset'),
     display_scoreboard(update_hi_score(), current_score), word_length = get_player_word_length(), clear_screen(),
     display_hangman_logo('red', 'reset'), display_scoreboard(update_hi_score(), update_current_score(word_length)),
-    create_secret_word(word_length), display_secret_word(), display_stickman(lives), 
-    play_hangman(word_length, hint, game_over, guess)
+    secret_word = create_secret_word(word_length, secret_word), display_secret_word(secret_word, secret_word_display), 
+    display_stickman(lives), play_hangman(word_length, hint, game_over, guess, secret_word, secret_word_display)
     Then the while loop calls: player_answer = input('Would you like to play again to increase your high score? y/n: ').lower()
     '''
-    global hi_score, current_score, secret_word, secret_word_display, letters_guessed, lives
+    global hi_score, current_score, letters_guessed, lives
     
     player_answer = input('Would you like to play again to increase your score? y/n: ').lower()
     player_answer_error = True
@@ -534,15 +543,15 @@ def replay_hangman(word_length, game_over, guess):
         
         display_scoreboard(update_hi_score(), update_current_score(word_length))
 
-        create_secret_word(word_length)
+        secret_word = create_secret_word(word_length, secret_word)
 
-        display_secret_word()
+        display_secret_word(secret_word, secret_word_display)
 
         display_stickman(lives)
 
-        play_hangman(word_length, hint, game_over, guess)
+        play_hangman(word_length, hint, game_over, guess, secret_word, secret_word_display)
 
         player_answer = input('Would you like to play again to increase your high score? y/n: ').lower()
 
 
-replay_hangman(word_length, game_over, guess)
+replay_hangman(word_length, game_over, guess, secret_word, secret_word_display)
