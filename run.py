@@ -12,16 +12,6 @@ from bs4 import BeautifulSoup
 from PyDictionary import PyDictionary
 
 
-hi_score = 0
-current_score = 0
-secret_word = None
-secret_word_display = []
-letters_guessed = []
-lives = 6
-game_over = False
-hint = True
-
-
 def clear_screen():
     '''
     Clears terminal screen.
@@ -48,9 +38,6 @@ def display_hangman_logo(colorStart, colorEnd):
     print(hangman_logo)
 
 
-display_hangman_logo('red', 'reset')
-
-
 def display_scoreboard(hi_score, current_score):
     '''
     Displays Hangman Game's Scoreboard.
@@ -61,9 +48,6 @@ def display_scoreboard(hi_score, current_score):
     '''
     print(f'\nHigh Score: {hi_score}')
     print(f'\nCurrent Max Score: {current_score}\n')
-
-
-display_scoreboard(hi_score, current_score)
 
 
 def get_player_word_length():
@@ -98,15 +82,6 @@ def get_player_word_length():
     return int(word_length_choice)
 
 
-word_length = get_player_word_length()
-    
-
-clear_screen()
-
-
-display_hangman_logo('red', 'reset')
-
-
 def update_current_score(word_length, current_score, lives):
     '''
     Calculates current_score according to word_length points per life.
@@ -126,12 +101,6 @@ def update_current_score(word_length, current_score, lives):
         current_score = 60 * lives
     
     return current_score
-
-
-current_score = update_current_score(word_length, current_score, lives)
-
-
-display_scoreboard(hi_score, current_score)
 
 
 def update_hi_score(hi_score, current_score):
@@ -158,9 +127,6 @@ def create_secret_word(word_length, secret_word):
     return secret_word  
 
 
-secret_word = create_secret_word(word_length, secret_word)
-
-
 def display_secret_word(secret_word, secret_word_display):
     '''
     Displays (prints) the secret word (hidden) by replacing letters with blanks (underscores).
@@ -172,18 +138,12 @@ def display_secret_word(secret_word, secret_word_display):
     print(f"\n{' '.join(secret_word_display)}\n")
 
 
-display_secret_word(secret_word, secret_word_display)
-
-
 def display_stickman(lives):
     '''
     Prints the variable STICKMAN_STAGES at set index (current live) 
     with its formatted colors (.format(**COLORS)) from the dictionary COLORS.
     '''
     print(STICKMAN_STAGES[lives].format(**COLORS))
-
-
-display_stickman(lives)
 
 
 def get_player_guess():
@@ -319,9 +279,6 @@ def give_player_hint(hint, secret_word, lives):
     return hint
 
 
-hint = give_player_hint(hint, secret_word, lives)
-
-
 def check_lost_game(guess, game_over, secret_word, lives):
     '''
     Checks if player's guess is not in the secret_word.
@@ -435,7 +392,7 @@ def display_letters_guessed(guess, letters_guessed):
     print(f"Letters guessed: {', '.join(map(str, letters_guessed))}\n")
 
 
-def play_hangman(word_length, hint, game_over, secret_word, secret_word_display, hi_score, current_score, letters_guessed, lives):
+def play_hangman(word_length, game_over, secret_word, secret_word_display, hi_score, current_score, letters_guessed, lives):
     '''
     Sets the variable hint = True.
     Creates a while loop for when variable game_over equals false.
@@ -496,9 +453,6 @@ def play_hangman(word_length, hint, game_over, secret_word, secret_word_display,
     return hi_score
 
 
-hi_score = play_hangman(word_length, hint, game_over, secret_word, secret_word_display, hi_score, current_score, letters_guessed, lives)
-
-
 def get_player_replay():
     '''
     Gets the player answer whether wants to replay the game to increase their hi-score:
@@ -543,7 +497,7 @@ def replay_hangman(hi_score):
     display_hangman_logo('red', 'reset'),  current_score = update_current_score(word_length, current_score, lives), 
     display_scoreboard(hi_score, current_score), secret_word = create_secret_word(word_length, secret_word), 
     display_secret_word(secret_word, secret_word_display), display_stickman(lives), 
-    hi_score = play_hangman(word_length, hint, game_over, secret_word, secret_word_display, hi_score, current_score, letters_guessed, lives),
+    hi_score = play_hangman(word_length, game_over, secret_word, secret_word_display, hi_score, current_score, letters_guessed, lives),
     player_answer_replay = get_player_replay()
     '''
     player_answer_replay = get_player_replay()
@@ -578,9 +532,49 @@ def replay_hangman(hi_score):
 
         display_stickman(lives)
 
-        hi_score = play_hangman(word_length, hint, game_over, secret_word, secret_word_display, hi_score, current_score, letters_guessed, lives)
+        hi_score = play_hangman(word_length, game_over, secret_word, secret_word_display, hi_score, current_score, letters_guessed, lives)
 
         player_answer_replay = get_player_replay()
 
 
-replay_hangman(hi_score)
+def main():
+    '''
+    Sets program variables and runs all program functions.
+    '''
+    hi_score = 0
+    current_score = 0
+    secret_word = None
+    secret_word_display = []
+    letters_guessed = []
+    lives = 6
+    game_over = False
+    hint = True
+
+    display_hangman_logo('red', 'reset')
+
+    display_scoreboard(hi_score, current_score)
+
+    word_length = get_player_word_length()
+    
+    clear_screen()
+
+    display_hangman_logo('red', 'reset')
+
+    current_score = update_current_score(word_length, current_score, lives)
+
+    display_scoreboard(hi_score, current_score)
+
+    secret_word = create_secret_word(word_length, secret_word)
+
+    display_secret_word(secret_word, secret_word_display)
+
+    display_stickman(lives)
+
+    hint = give_player_hint(hint, secret_word, lives)
+
+    hi_score = play_hangman(word_length, game_over, secret_word, secret_word_display, hi_score, current_score, letters_guessed, lives)
+
+    replay_hangman(hi_score)
+
+
+main()
