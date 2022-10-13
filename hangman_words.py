@@ -38,7 +38,7 @@ WORD_LISTS = [
         'iron',
         'jail',
         'joke',
-		'jump',
+        'jump',
         'junk',
         'kind',
         'kiss',
