@@ -2,7 +2,7 @@ WORD_LISTS = [
     [
         'acid',
         'aide',
-        'airy',        
+        'airy',
         'acre',
         'baby',
         'bait',
@@ -14,7 +14,7 @@ WORD_LISTS = [
         'code',
         'daze',
         'deal',
-        'debt',      
+        'debt',
         'dart',
         'each',
         'edit',
