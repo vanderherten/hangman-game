@@ -168,7 +168,6 @@ def display_secret_word(secret_word, secret_word_display):
     '''
     Displays (prints) the secret word (hidden) by replacing letters with blanks (underscores).
     When printing: print(f"\n{' '.join(secret_word_display)}\n") creates string from list.
-    Returns secret_word_display variable.
     '''
     for letter in secret_word:
         secret_word_display.append('_')
