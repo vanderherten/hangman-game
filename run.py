@@ -175,8 +175,6 @@ def display_secret_word(secret_word, secret_word_display):
 
     print(f"\n{' '.join(secret_word_display)}\n")
 
-    return secret_word_display
-
 
 display_secret_word(secret_word, secret_word_display)
 
