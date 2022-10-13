@@ -530,7 +530,7 @@ def get_player_replay():
     return player_answer_replay
 
 
-def replay_hangman(word_length, game_over, guess, secret_word, secret_word_display, hi_score, current_score, letters_guessed):
+def replay_hangman(hi_score):
     '''
     sets the get_player_replay() function to the player_answer_replay variable:
     player_answer_replay = get_player_replay()
@@ -584,4 +584,4 @@ def replay_hangman(word_length, game_over, guess, secret_word, secret_word_displ
         player_answer_replay = get_player_replay()
 
 
-replay_hangman(word_length, game_over, guess, secret_word, secret_word_display, hi_score, current_score, letters_guessed)
+replay_hangman(hi_score)
