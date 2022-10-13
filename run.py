@@ -570,8 +570,6 @@ def main():
 
     display_stickman(lives)
 
-    hint = give_player_hint(hint, secret_word, lives)
-
     hi_score = play_hangman(word_length, game_over, secret_word, secret_word_display, hi_score, current_score, letters_guessed, lives)
 
     replay_hangman(hi_score)
