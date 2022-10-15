@@ -583,6 +583,8 @@ def main():
 
     replay_hangman(hi_score)
 
+    clear_screen()
+
     exit_hangman()
 
 
