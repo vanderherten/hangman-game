@@ -2,6 +2,7 @@ import pyfiglet
 import random
 import re
 import os
+import sys
 from hangman_colors import COLORS
 from hangman_words import WORD_LISTS
 from hangman_art import STICKMAN_STAGES
@@ -537,6 +538,14 @@ def replay_hangman(hi_score):
         player_answer_replay = get_player_replay()
 
 
+def exit_hangman():
+    '''
+    Exits the program
+    sys.exit()
+    '''
+    sys.exit()
+
+
 def main():
     '''
     Sets program variables and runs all program functions.
@@ -573,6 +582,8 @@ def main():
     hi_score = play_hangman(word_length, game_over, secret_word, secret_word_display, hi_score, current_score, letters_guessed, lives)
 
     replay_hangman(hi_score)
+
+    exit_hangman()
 
 
 main()
