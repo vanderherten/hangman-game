@@ -38,7 +38,15 @@ def display_hangman_logo(colorStart, colorEnd):
     print(hangman_logo)
 
 
-def display_hangman_instructions():
+def display_hangman_welcome():
+    '''
+    Prints welcome message:
+    print('WELCOME!\n')
+    '''
+    print('WELCOME!\n')
+
+
+def give_player_instructions():
     '''
     Asks the player input("Would you like to see the hangman game's instructions? y/n: ").lower()
     Then handles answer error cases with a while loop and gives the player feedback.
@@ -46,7 +54,6 @@ def display_hangman_instructions():
     '''
     while True:
         try:
-            print('WELCOME!\n')
             player_answer_instructions = input("Would you like to see the hangman game's instructions? y/n: ").lower()
             while True:
                 if player_answer_instructions != 'y' and player_answer_instructions != 'n':
@@ -597,7 +604,9 @@ def main():
 
     display_hangman_logo('red', 'reset')
 
-    display_hangman_instructions()
+    display_hangman_welcome()
+
+    give_player_instructions()
 
     word_length = get_player_word_length()
     
