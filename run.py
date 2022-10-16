@@ -39,6 +39,48 @@ def display_hangman_logo(colorStart, colorEnd):
     print(hangman_logo)
 
 
+def display_hangman_instructions():
+    '''
+    Asks the player input("Would you like to see the hangman game's instructions? y/n: ").lower()
+    Then handles answer error cases with a while loop and gives the player feedback.
+    If the player answers 'y', the hangman game's instuctions will be displayed.
+    '''
+    while True:
+        try:
+            print('WELCOME!\n')
+            player_answer_instructions = input("Would you like to see the hangman game's instructions? y/n: ").lower()
+            while True:
+                if player_answer_instructions != 'y' and player_answer_instructions != 'n':
+                    print('\nError! Please answer with either the letter y (for yes) or n (for no).\n')
+                    player_answer_instructions = input("Would you like to see the hangman game's instructions? y/n: ").lower()
+                elif re.match('^\s*$', player_answer_instructions):
+                    print('\nError! Please answer with either the letter y (for yes) or n (for no).\n')
+                    player_answer_instructions = input("Would you like to see the hangman game's instructions? y/n: ").lower()
+                elif len(player_answer_instructions) > 1:
+                    print('\nError! Please answer with either the letter y (for yes) or n (for no).\n')
+                    player_answer_instructions = input("Would you like to see the hangman game's instructions? y/n: ").lower()
+                else:
+                    break
+        except Exception as e:
+            print(f'\nError! {e}! Please answer with either the letter y (for yes) or n (for no).\n')
+        else:
+            break
+    if player_answer_instructions == 'y':
+        print('\nHOW TO PLAY HANGMAN:\n')
+        print('• At the start of every game the player gets to choose the word length: from 4 to 9 letters.')
+        print('• A hi-score will be displayed, reflecting the highest score attained by the player.')
+        print('• A current max score will be calculated, which is the highest attainable score for the game with the chosen word length.')
+        print('• The game starts with 6 lives and with every wrong letter guess the player will lose a life.')
+        print('• Every new game will start with the current max score displayed which will decrease when the player loses a life.')
+        print('• When there is only one life left, the player will have the option to get a hint.')
+        print('• The player will win when having guessed all the word letters before losing all lives.')
+        print('• The current max score remaining at the end of the game will be the final score for the game.')
+        print('• If the game end score is higher than the displayed hi-score, the hi-score will be updated.')
+        print("• If the player loses the game, the secret word will be revealed and the player will get the option to see the word's definition.")
+        print('• At the end of every game the player will be given the option to replay the game to increase their hi-score or to exit the game.')
+        print('• After the player exits the game, the game can be run again with the hi-score reset to zero.')
+
+   
 def display_scoreboard(hi_score, current_score):
     '''
     Displays Hangman Game's Scoreboard.
@@ -560,6 +602,8 @@ def main():
     hint = True
 
     display_hangman_logo('red', 'reset')
+
+    display_hangman_instructions()
 
     display_scoreboard(hi_score, current_score)
 
