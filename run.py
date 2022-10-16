@@ -314,9 +314,9 @@ def give_player_hint(hint, secret_word, lives):
                 print('Retrieving the hint...')
                 synonyms_list = synonyms(secret_word)
                 if synonyms_list == []:
-                    print('Sorry, there is no hint to display for this secret word.')
+                    print('\nSorry, there is no hint to display for this secret word.\n')
                 else:
-                    print(f'Synonyms for the secret word are: {", ".join(list(set(synonyms_list[:4])))}')    
+                    print(f'\nSynonyms for the secret word are: {", ".join(list(set(synonyms_list[:4])))}\n')    
             hint = False
            
     return hint
