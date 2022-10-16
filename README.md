@@ -50,3 +50,14 @@ Hangman Game is based on the classic paper-and-pencil game. You can read more ab
     - I want to be able to improve my vocabulary knowledge, by having access to the word synonyms and definitions that I don't know.
     - I want to be able to exit the game to have a fresh start with the hi-score reset to zero. 
 
+
+## Design
+
+### Features
+
+![Design Features](assets/images/design-features.png)
+
+### Flowchart
+
+![Design Features](assets/images/design-flowchart.png)
+
