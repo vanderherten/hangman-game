@@ -32,9 +32,10 @@ def display_hangman_logo(colorStart, colorEnd):
     Prints hangman_logo with pyfiglet module which takes ASCII text and renders it in ASCII art font 'letter'.
     Applies an Ansi color code to hangman_logo and an Ansi color code to apply after hangman_logo display.
     Can choose from the following colors: 'red', 'purple', 'yellow', 'blue', 'reset'
-    Color 'reset' used for colorEnd will end the colorStart color, so text after hangman logo will be reset to white. 
+    Color 'reset' used for colorEnd will end the colorStart color, so text after hangman logo will be reset to white.
     """
-    hangman_logo = COLORS[colorStart] + pyfiglet.figlet_format('_   hangman',font='letters') + COLORS[colorEnd]
+    hangman_logo = COLORS[colorStart] + pyfiglet.figlet_format(
+        '_   hangman', font='letters') + COLORS[colorEnd]
     print(hangman_logo)
 
 
@@ -54,21 +55,29 @@ def give_player_instructions():
     '''
     while True:
         try:
-            player_answer_instructions = input("Would you like to see the hangman game's instructions? y/n: ").lower()
+            player_answer_instructions = input(
+                "Would you like to see the hangman game's instructions? y/n: ").lower()
             while True:
                 if player_answer_instructions != 'y' and player_answer_instructions != 'n':
-                    print('\nError! Please answer with either the letter y (for yes) or n (for no).\n')
-                    player_answer_instructions = input("Would you like to see the hangman game's instructions? y/n: ").lower()
-                elif re.match('^\s*$', player_answer_instructions):
-                    print('\nError! Please answer with either the letter y (for yes) or n (for no).\n')
-                    player_answer_instructions = input("Would you like to see the hangman game's instructions? y/n: ").lower()
+                    print(
+                        '\nError! Please answer with either the letter y (for yes) or n (for no).\n')
+                    player_answer_instructions = input(
+                        "Would you like to see the hangman game's instructions? y/n: ").lower()
+                elif re.match('^\\s*$', player_answer_instructions):
+                    print(
+                        '\nError! Please answer with either the letter y (for yes) or n (for no).\n')
+                    player_answer_instructions = input(
+                        "Would you like to see the hangman game's instructions? y/n: ").lower()
                 elif len(player_answer_instructions) > 1:
-                    print('\nError! Please answer with either the letter y (for yes) or n (for no).\n')
-                    player_answer_instructions = input("Would you like to see the hangman game's instructions? y/n: ").lower()
+                    print(
+                        '\nError! Please answer with either the letter y (for yes) or n (for no).\n')
+                    player_answer_instructions = input(
+                        "Would you like to see the hangman game's instructions? y/n: ").lower()
                 else:
                     break
         except Exception as e:
-            print(f'\nError! {e}! Please answer with either the letter y (for yes) or n (for no).\n')
+            print(
+                f'\nError! {e}! Please answer with either the letter y (for yes) or n (for no).\n')
         else:
             break
     if player_answer_instructions == 'y':
@@ -82,8 +91,8 @@ def give_player_instructions():
         print('• The current max score remaining at the end of the game will be the final score  for the game. If the game end score is higher than the displayed hi-score, the  hi-score will be updated.')
         print("• If the player loses the game, the secret word will be revealed and the player   will get the option to see the word's definition.")
         print('• At the end of every game the player will be given the option to replay the      game to increase their hi-score or to exit the game. After the player exits     the game, the game can be run again with the hi-score reset to zero.')
-        
-   
+
+
 def display_scoreboard(hi_score, current_score):
     '''
     Displays Hangman Game's Scoreboard.
@@ -107,24 +116,29 @@ def get_player_word_length():
     '''
     while True:
         try:
-            word_length_choice = input("\nPlease choose the game's word length. Pick a number from 4 to 9: ")
+            word_length_choice = input(
+                "\nPlease choose the game's word length. Pick a number from 4 to 9: ")
             while True:
                 if not re.match('^[4-9]*$', word_length_choice):
                     print('\nError! Please enter one whole number from 4 to 9.\n')
-                    word_length_choice = input("\nPlease choose the game's word length. Pick a number from 4 to 9: ")
-                elif re.match('^\s*$', word_length_choice):
+                    word_length_choice = input(
+                        "\nPlease choose the game's word length. Pick a number from 4 to 9: ")
+                elif re.match('^\\s*$', word_length_choice):
                     print('\nError! Please enter one whole number from 4 to 9.\n')
-                    word_length_choice = input("\nPlease choose the game's word length. Pick a number from 4 to 9: ")
+                    word_length_choice = input(
+                        "\nPlease choose the game's word length. Pick a number from 4 to 9: ")
                 elif len(word_length_choice) > 1:
                     print('\nError! Please enter one whole number from 4 to 9.\n')
-                    word_length_choice = input("\nPlease choose the game's word length. Pick a number from 4 to 9: ")
+                    word_length_choice = input(
+                        "\nPlease choose the game's word length. Pick a number from 4 to 9: ")
                 else:
                     break
         except Exception as e:
-            print(f'\nError! {e}! Please enter one whole number from 4 to 9.\n')
+            print(
+                f'\nError! {e}! Please enter one whole number from 4 to 9.\n')
         else:
             break
-    
+
     return int(word_length_choice)
 
 
@@ -145,7 +159,7 @@ def update_current_score(word_length, current_score, lives):
         current_score = 50 * lives
     if word_length == 9:
         current_score = 60 * lives
-    
+
     return current_score
 
 
@@ -170,7 +184,7 @@ def create_secret_word(word_length, secret_word):
     '''
     secret_word = random.choice(WORD_LISTS[word_length - 4])
 
-    return secret_word  
+    return secret_word
 
 
 def display_secret_word(secret_word, secret_word_display):
@@ -186,7 +200,7 @@ def display_secret_word(secret_word, secret_word_display):
 
 def display_stickman(lives):
     '''
-    Prints the variable STICKMAN_STAGES at set index (current live) 
+    Prints the variable STICKMAN_STAGES at set index (current live)
     with its formatted colors (.format(**COLORS)) from the dictionary COLORS.
     '''
     print(STICKMAN_STAGES[lives].format(**COLORS))
@@ -210,13 +224,14 @@ def get_player_guess():
                 elif len(guess) > 1:
                     print('\nError! Please enter one letter from the alphabet a-z.\n')
                     guess = input('Guess a letter: ').lower()
-                elif re.match('^\s*$', guess):
+                elif re.match('^\\s*$', guess):
                     print('\nError! Please enter one letter from the alphabet a-z.\n')
                     guess = input('Guess a letter: ').lower()
                 else:
                     break
         except Exception as e:
-            print(f'\nError! {e}! Please enter one letter from the alphabet a-z.\n')
+            print(
+                f'\nError! {e}! Please enter one letter from the alphabet a-z.\n')
         else:
             break
 
@@ -232,7 +247,7 @@ def add_correct_guess_to_display(guess, secret_word, secret_word_display):
         letter = secret_word[ind]
         if letter == guess:
             secret_word_display[ind] = letter
-    
+
     print(f"\n{' '.join(secret_word_display)}\n")
 
 
@@ -255,7 +270,7 @@ def lose_life_incorrect_guess(guess, secret_word, letters_guessed, lives):
     if guess not in secret_word:
         if guess not in letters_guessed:
             lives -= 1
-    
+
     return lives
 
 
@@ -270,15 +285,18 @@ def give_feedback_incorrect_guess(guess, secret_word, letters_guessed):
             print(f"\nYou lost a life! Your guess is not in the secret word.\n")
 
 
-# Start code used from other source (https://stackoverflow.com/questions/52910297/pydictionary-word-has-no-synonyms-in-the-api)
+# Start code used from other source
+# (https://stackoverflow.com/questions/52910297/pydictionary-word-has-no-synonyms-in-the-api)
 def synonyms(secret_word):
     '''
     Function looks up synonyms on thesaurus.com (web scrapes) and returns a list of synonym words
     '''
-    response = requests.get('https://www.thesaurus.com/browse/{}'.format(secret_word))
+    response = requests.get(
+        'https://www.thesaurus.com/browse/{}'.format(secret_word))
     soup = BeautifulSoup(response.text, 'html.parser')
     soup.find('section', {'class': 'css-191l5o0-ClassicContentCard e1qo4u830'})
-    return [span.text for span in soup.findAll('a', {'class': 'css-1kg1yv8 eh475bn0'})] 
+    return [span.text for span in soup.findAll(
+        'a', {'class': 'css-1kg1yv8 eh475bn0'})]
 # End code used from other source
 
 
@@ -290,38 +308,48 @@ def give_player_hint(hint, secret_word, lives):
     If the player answers 'y', synonyms for the secret word will be displayed (web scraped from thesaurus.com).
     The player will be given feedback if no synonym is scraped:
     print('Sorry, there is no hint to display for this secret word.').
-    The function returns variable hint = False 
+    The function returns variable hint = False
     '''
     if lives == 1:
         while hint:
             while True:
                 try:
-                    player_answer_hint = input('Would you like to get a hint? y/n: ').lower()
+                    player_answer_hint = input(
+                        'Would you like to get a hint? y/n: ').lower()
                     while True:
                         if player_answer_hint != 'y' and player_answer_hint != 'n':
-                            print('\nError! Please answer with either the letter y (for yes) or n (for no).')
-                            player_answer_hint = input('Would you like to get a hint? y/n: ').lower()
-                        elif re.match('^\s*$', player_answer_hint):
-                            print('\nError! Please answer with either the letter y (for yes) or n (for no).')
-                            player_answer_hint = input('Would you like to get a hint? y/n: ').lower()
+                            print(
+                                '\nError! Please answer with either the letter y (for yes) or n (for no).')
+                            player_answer_hint = input(
+                                'Would you like to get a hint? y/n: ').lower()
+                        elif re.match('^\\s*$', player_answer_hint):
+                            print(
+                                '\nError! Please answer with either the letter y (for yes) or n (for no).')
+                            player_answer_hint = input(
+                                'Would you like to get a hint? y/n: ').lower()
                         elif len(player_answer_hint) > 1:
-                            print('\nError! Please answer with either the letter y (for yes) or n (for no).')
-                            player_answer_hint = input('Would you like to get a hint? y/n: ').lower()
+                            print(
+                                '\nError! Please answer with either the letter y (for yes) or n (for no).')
+                            player_answer_hint = input(
+                                'Would you like to get a hint? y/n: ').lower()
                         else:
                             break
                 except Exception as e:
-                    print(f'\nError! {e}! Please answer with either the letter y (for yes) or n (for no).')
+                    print(
+                        f'\nError! {e}! Please answer with either the letter y (for yes) or n (for no).')
                 else:
                     break
             if player_answer_hint == 'y':
                 print('Retrieving the hint...')
                 synonyms_list = synonyms(secret_word)
                 if synonyms_list == []:
-                    print('\nSorry, there is no hint to display for this secret word.\n')
+                    print(
+                        '\nSorry, there is no hint to display for this secret word.\n')
                 else:
-                    print(f'\nSynonyms for the secret word are: {", ".join(list(set(synonyms_list[:4])))}\n')    
+                    print(
+                        f'\nSynonyms for the secret word are: {", ".join(list(set(synonyms_list[:4])))}\n')
             hint = False
-           
+
     return hint
 
 
@@ -335,7 +363,7 @@ def check_lost_game(guess, game_over, secret_word, lives):
     if guess not in secret_word:
         if lives == 0:
             game_over = True
-    
+
     return game_over
 
 
@@ -346,7 +374,7 @@ def give_feedback_lost_game(guess, game_over, secret_word):
     If so, feedback is given to the player that they lost.
     '''
     if guess not in secret_word:
-        if game_over == True:
+        if game_over:
             print('Sorry, you lost.\n')
 
 
@@ -358,7 +386,7 @@ def reveal_secret_word(guess, game_over, secret_word):
     print(f'The secret word is {secret_word}.\n')
     '''
     if guess not in secret_word:
-        if game_over == True:
+        if game_over:
             print(f'The secret word is {secret_word}.\n')
 
 
@@ -368,39 +396,50 @@ def give_player_word_definition(guess, game_over, secret_word):
     If so, checks if game_over == True:
     If so, asks the player input(f'Would you like to see the definition for {secret_word}? y/n: ').lower()
     Then handles answer error cases with a while loop and gives player feedback.
-    If the player answers 'y', the definition for the secret word will be displayed 
+    If the player answers 'y', the definition for the secret word will be displayed
     (web scraped from thesaurus.com with use of PyDictionary module).
     The player will be given feedback if the scraped definition dictionary is empty:
     print(f'Sorry, there is no definition to display for {secret_word}.').
     '''
     if guess not in secret_word:
-        if game_over == True:
+        if game_over:
             while True:
                 try:
-                    player_answer_definition = input(f'Would you like to see the definition for {secret_word}? y/n: ').lower()
+                    player_answer_definition = input(
+                        f'Would you like to see the definition for {secret_word}? y/n: ').lower()
                     while True:
                         if player_answer_definition != 'y' and player_answer_definition != 'n':
-                            print('\nError! Please answer with either the letter y (for yes) or n (for no).')
-                            player_answer_definition = input(f'Would you like to see the definition for {secret_word}? y/n: ').lower()
-                        elif re.match('^\s*$', player_answer_definition):
-                            print('\nError! Please answer with either the letter y (for yes) or n (for no).')
-                            player_answer_definition = input(f'Would you like to see the definition for {secret_word}? y/n: ').lower()
+                            print(
+                                '\nError! Please answer with either the letter y (for yes) or n (for no).')
+                            player_answer_definition = input(
+                                f'Would you like to see the definition for {secret_word}? y/n: ').lower()
+                        elif re.match('^\\s*$', player_answer_definition):
+                            print(
+                                '\nError! Please answer with either the letter y (for yes) or n (for no).')
+                            player_answer_definition = input(
+                                f'Would you like to see the definition for {secret_word}? y/n: ').lower()
                         elif len(player_answer_definition) > 1:
-                            print('\nError! Please answer with either the letter y (for yes) or n (for no).')
-                            player_answer_definition = input(f'Would you like to see the definition for {secret_word}? y/n: ').lower()
+                            print(
+                                '\nError! Please answer with either the letter y (for yes) or n (for no).')
+                            player_answer_definition = input(
+                                f'Would you like to see the definition for {secret_word}? y/n: ').lower()
                         else:
                             break
                 except Exception as e:
-                    print(f'\nError! {e}! Please answer with either the letter y (for yes) or n (for no).')
+                    print(
+                        f'\nError! {e}! Please answer with either the letter y (for yes) or n (for no).')
                 else:
                     break
             if player_answer_definition == 'y':
                 print(f'Retrieving the definition for {secret_word}...')
                 dictionary = PyDictionary()
                 definition_dictionary = dictionary.meaning(secret_word)
-                definition = '\n'.join(f'{key}: {value}' for key, value in definition_dictionary.items())
+                definition = '\n'.join(
+                    f'{key}: {value}' for key,
+                    value in definition_dictionary.items())
                 if definition_dictionary == {}:
-                    print(f'Sorry, there is no definition to display for {secret_word}.')
+                    print(
+                        f'Sorry, there is no definition to display for {secret_word}.')
                 else:
                     print(f'\n{definition}\n')
 
@@ -438,18 +477,26 @@ def display_letters_guessed(guess, letters_guessed):
     print(f"Letters guessed: {', '.join(map(str, letters_guessed))}\n")
 
 
-def play_hangman(word_length, game_over, secret_word, secret_word_display, hi_score, current_score, letters_guessed, lives):
+def play_hangman(
+        word_length,
+        game_over,
+        secret_word,
+        secret_word_display,
+        hi_score,
+        current_score,
+        letters_guessed,
+        lives):
     '''
     Sets the variable hint = True.
     Creates a while loop for when variable game_over equals false.
     In the loop while not game_over:
     Calls functions: guess = get_player_guess(), clear_screen(),
-    lives = lose_life_incorrect_guess(guess, secret_word, letters_guessed, lives), current_score = update_current_score(word_length, current_score), 
-    display_scoreboard(hi_score, current_score),add_correct_guess_to_display(guess, secret_word, secret_word_display), 
-    display_stickman(lives), give_feedback_repeat_guess(guess, letters_guessed), give_feedback_incorrect_guess(guess, secret_word, letters_guessed), 
-    game_over = check_lost_game(guess, game_over, secret_word, lives), game_over = check_won_game(game_over, secret_word_display), 
-    display_letters_guessed(guess, letters_guessed), hint = give_player_hint(hint, secret_word, lives), 
-    give_feedback_lost_game(guess, game_over, secret_word), reveal_secret_word(guess, game_over, secret_word), 
+    lives = lose_life_incorrect_guess(guess, secret_word, letters_guessed, lives), current_score = update_current_score(word_length, current_score),
+    display_scoreboard(hi_score, current_score),add_correct_guess_to_display(guess, secret_word, secret_word_display),
+    display_stickman(lives), give_feedback_repeat_guess(guess, letters_guessed), give_feedback_incorrect_guess(guess, secret_word, letters_guessed),
+    game_over = check_lost_game(guess, game_over, secret_word, lives), game_over = check_won_game(game_over, secret_word_display),
+    display_letters_guessed(guess, letters_guessed), hint = give_player_hint(hint, secret_word, lives),
+    give_feedback_lost_game(guess, game_over, secret_word), reveal_secret_word(guess, game_over, secret_word),
     give_player_word_definition(guess, game_over, secret_word), give_feedback_won_game(secret_word_display).
     When game_over is True (after exit while loop):
     hi_score = update_hi_score(hi_score, current_score)
@@ -459,13 +506,14 @@ def play_hangman(word_length, game_over, secret_word, secret_word_display, hi_sc
 
     while not game_over:
         guess = get_player_guess()
-        
+
         clear_screen()
-        
-        lives = lose_life_incorrect_guess(guess, secret_word, letters_guessed, lives)
-        
+
+        lives = lose_life_incorrect_guess(
+            guess, secret_word, letters_guessed, lives)
+
         current_score = update_current_score(word_length, current_score, lives)
-        
+
         display_scoreboard(hi_score, current_score)
 
         add_correct_guess_to_display(guess, secret_word, secret_word_display)
@@ -491,7 +539,7 @@ def play_hangman(word_length, game_over, secret_word, secret_word_display, hi_sc
         give_player_word_definition(guess, game_over, secret_word)
 
         give_feedback_won_game(secret_word_display)
-    
+
     hi_score = update_hi_score(hi_score, current_score)
 
     return hi_score
@@ -506,24 +554,32 @@ def get_player_replay():
     '''
     while True:
         try:
-            player_answer_replay = input('Would you like to play again to increase your high score? y/n: ').lower()
+            player_answer_replay = input(
+                'Would you like to play again to increase your high score? y/n: ').lower()
             while True:
                 if player_answer_replay != 'y' and player_answer_replay != 'n':
-                    print('\nError! Please answer with either the letter y (for yes) or n (for no).')
-                    player_answer_replay = input('Would you like to play again to increase your high score? y/n: ').lower()
-                elif re.match('^\s*$', player_answer_replay):
-                    print('\nError! Please answer with either the letter y (for yes) or n (for no).')
-                    player_answer_replay = input('Would you like to play again to increase your high score? y/n: ').lower()
+                    print(
+                        '\nError! Please answer with either the letter y (for yes) or n (for no).')
+                    player_answer_replay = input(
+                        'Would you like to play again to increase your high score? y/n: ').lower()
+                elif re.match('^\\s*$', player_answer_replay):
+                    print(
+                        '\nError! Please answer with either the letter y (for yes) or n (for no).')
+                    player_answer_replay = input(
+                        'Would you like to play again to increase your high score? y/n: ').lower()
                 elif len(player_answer_replay) > 1:
-                    print('\nError! Please answer with either the letter y (for yes) or n (for no).')
-                    player_answer_replay = input('Would you like to play again to increase your high score? y/n: ').lower()
+                    print(
+                        '\nError! Please answer with either the letter y (for yes) or n (for no).')
+                    player_answer_replay = input(
+                        'Would you like to play again to increase your high score? y/n: ').lower()
                 else:
                     break
         except Exception as e:
-            print(f'\nError! {e}! Please answer with either the letter y (for yes) or n (for no).')
+            print(
+                f'\nError! {e}! Please answer with either the letter y (for yes) or n (for no).')
         else:
             break
-    
+
     return player_answer_replay
 
 
@@ -538,9 +594,9 @@ def replay_hangman(hi_score):
     letters_guessed = [], lives = 6, game_over = False
     Then the while loop calls the functions: clear_screen(), display_hangman_logo('red', 'reset'),
     word_length = get_player_word_length(), clear_screen(),
-    current_score = update_current_score(word_length, current_score, lives), 
-    display_scoreboard(hi_score, current_score), secret_word = create_secret_word(word_length, secret_word), 
-    display_secret_word(secret_word, secret_word_display), display_stickman(lives), 
+    current_score = update_current_score(word_length, current_score, lives),
+    display_scoreboard(hi_score, current_score), secret_word = create_secret_word(word_length, secret_word),
+    display_secret_word(secret_word, secret_word_display), display_stickman(lives),
     hi_score = play_hangman(word_length, game_over, secret_word, secret_word_display, hi_score, current_score, letters_guessed, lives),
     player_answer_replay = get_player_replay()
     '''
@@ -553,17 +609,17 @@ def replay_hangman(hi_score):
         letters_guessed = []
         lives = 6
         game_over = False
-        
+
         clear_screen()
 
         display_hangman_logo('red', 'reset')
 
         word_length = get_player_word_length()
-        
+
         clear_screen()
 
         current_score = update_current_score(word_length, current_score, lives)
-        
+
         display_scoreboard(hi_score, current_score)
 
         secret_word = create_secret_word(word_length, secret_word)
@@ -572,7 +628,15 @@ def replay_hangman(hi_score):
 
         display_stickman(lives)
 
-        hi_score = play_hangman(word_length, game_over, secret_word, secret_word_display, hi_score, current_score, letters_guessed, lives)
+        hi_score = play_hangman(
+            word_length,
+            game_over,
+            secret_word,
+            secret_word_display,
+            hi_score,
+            current_score,
+            letters_guessed,
+            lives)
 
         player_answer_replay = get_player_replay()
 
@@ -593,7 +657,7 @@ def main():
     Functions: display_hangman_logo('red', 'reset'), display_hangman_welcome(), give_player_instructions(),
     word_length = get_player_word_length(), clear_screen(), current_score = update_current_score(word_length, current_score, lives),
     display_scoreboard(hi_score, current_score), secret_word = create_secret_word(word_length, secret_word),
-    display_secret_word(secret_word, secret_word_display), display_stickman(lives), 
+    display_secret_word(secret_word, secret_word_display), display_stickman(lives),
     hi_score = play_hangman(word_length, game_over, secret_word, secret_word_display, hi_score, current_score, letters_guessed, lives),
     replay_hangman(hi_score), clear_screen(), exit_hangman()
     '''
@@ -613,7 +677,7 @@ def main():
     give_player_instructions()
 
     word_length = get_player_word_length()
-    
+
     clear_screen()
 
     current_score = update_current_score(word_length, current_score, lives)
@@ -626,7 +690,15 @@ def main():
 
     display_stickman(lives)
 
-    hi_score = play_hangman(word_length, game_over, secret_word, secret_word_display, hi_score, current_score, letters_guessed, lives)
+    hi_score = play_hangman(
+        word_length,
+        game_over,
+        secret_word,
+        secret_word_display,
+        hi_score,
+        current_score,
+        letters_guessed,
+        lives)
 
     replay_hangman(hi_score)
 

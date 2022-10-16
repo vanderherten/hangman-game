@@ -4,61 +4,61 @@ STICKMAN_STAGES = ['''
    |   {blue}O
    {purple}|  {blue}/|\\
    {purple}|  {blue}/ \\
-   {purple}|    
+   {purple}|
 ==========={reset}
 ''',
-'''
+                   '''
    {purple}+---+
    |   |
    |   {yellow}O
    {purple}|  {yellow}/|\\
    {purple}|  {yellow}/
-   {purple}|    
+   {purple}|
 ==========={reset}
 ''',
-'''
+                   '''
    {purple}+---+
    |   |
    |   {yellow}O
    {purple}|  {yellow}/|\\
    {purple}|
-   |    
+   |
 ==========={reset}
 ''',
-'''
+                   '''
    {purple}+---+
    |   |
    |   {yellow}O
    {purple}|  {yellow}/|
    {purple}|
-   |    
+   |
 ==========={reset}
 ''',
-'''
+                   '''
    {purple}+---+
    |   |
    |   {yellow}O
    {purple}|   {yellow}|
    {purple}|
-   |    
+   |
 ==========={reset}
 ''',
-'''
+                   '''
    {purple}+---+
    |   |
    |   {yellow}O
    {purple}|
    |
-   |    
+   |
 ==========={reset}
 ''',
-'''
+                   '''
    {purple}+---+
    |   |
    |
    |
    |
-   |    
+   |
 ==========={reset}
 '''
-]
+                   ]
