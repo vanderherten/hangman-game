@@ -588,6 +588,14 @@ def exit_hangman():
 def main():
     '''
     Sets program variables and runs all program functions.
+    Variable: hi_score = 0, current_score = 0, secret_word = None, secret_word_display() = [],
+    letters_guessed = [], lives = 6, game_over = False, hint = True
+    Functions: display_hangman_logo('red', 'reset'), display_hangman_welcome(), give_player_instructions(),
+    word_length = get_player_word_length(), clear_screen(), current_score = update_current_score(word_length, current_score, lives),
+    display_scoreboard(hi_score, current_score), secret_word = create_secret_word(word_length, secret_word),
+    display_secret_word(secret_word, secret_word_display), display_stickman(lives), 
+    hi_score = play_hangman(word_length, game_over, secret_word, secret_word_display, hi_score, current_score, letters_guessed, lives),
+    replay_hangman(hi_score), clear_screen(), exit_hangman()
     '''
     hi_score = 0
     current_score = 0
