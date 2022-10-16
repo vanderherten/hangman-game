@@ -75,7 +75,7 @@ def give_player_instructions():
         clear_screen()
         print('HOW TO PLAY HANGMAN:\n')
         print('• At the start of every game the player gets to choose the word length: from 4    to 9 letters.')
-        print('• A hi-score will be displayed, reflecting the highest score attained by the      player. A current max score will be calculated, which is the highest             attainable score for the game with the chosen word length.')
+        print('• A hi-score will be displayed, reflecting the highest score attained by the      player. A current max score will be calculated, which is the highest            attainable score for the game with the chosen word length.')
         print('• The game starts with 6 lives and with every wrong letter guess the player will  lose a life. Every new game will start with the current max score displayed     which will decrease when the player loses a life.')
         print('• When there is only one life left, the player will have the option to get a      hint.')
         print('• The player will win when having guessed all the word letters before losing all  lives.')
