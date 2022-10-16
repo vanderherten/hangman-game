@@ -30,4 +30,23 @@ Hangman Game is based on the classic paper-and-pencil game. You can read more ab
 - To develop a terminal game with great user experience.
 - To develop a game where the user can test their knowledge of english vocabulary.
 - To develop a game where the user can broaden their english vocabulary knowledge.
-- To develop a game where the user is challenged to keep improving while playing. 
+- To develop a game where the user is challenged to keep improving while playing.
+
+
+## UX - User Experience
+
+### User Stories
+
+- As a first-time user:
+    - I want to be able to know which game I will be playing from the title logo.
+    - I want to be able to have access to the instructions before starting the game.
+- As a user:
+    - I want to be able to choose from different word lengths before starting the game.
+    - I want to visually be able to keep track of the game's score.
+    - I want to have the opportunity to improve my score, by being able to replay the game.
+    - I want to be able to choose different word lengths when replaying the game.
+    - I want to have access to my hi-score. 
+    - I want to be provided with a hint when I have have a hard time guessing the secret word.
+    - I want to be able to improve my vocabulary knowledge, by having access to the word synonyms and definitions that I don't know.
+    - I want to be able to exit the game to have a fresh start with the hi-score reset to zero. 
+
