@@ -34,7 +34,6 @@ def display_hangman_logo(colorStart, colorEnd):
     Can choose from the following colors: 'red', 'purple', 'yellow', 'blue', 'reset'
     Color 'reset' used for colorEnd will end the colorStart color, so text after hangman logo will be reset to white. 
     """
-    print('\n')
     hangman_logo = COLORS[colorStart] + pyfiglet.figlet_format('_   hangman',font='letters') + COLORS[colorEnd]
     print(hangman_logo)
 
@@ -43,7 +42,7 @@ def display_hangman_instructions():
     '''
     Asks the player input("Would you like to see the hangman game's instructions? y/n: ").lower()
     Then handles answer error cases with a while loop and gives the player feedback.
-    If the player answers 'y', the hangman game's instuctions will be displayed.
+    If the player answers 'y', the screen will be cleared (clear_screen()) and the hangman game's instuctions will be displayed.
     '''
     while True:
         try:
@@ -66,6 +65,7 @@ def display_hangman_instructions():
         else:
             break
     if player_answer_instructions == 'y':
+        clear_screen()
         print('\nHOW TO PLAY HANGMAN:\n')
         print('• At the start of every game the player gets to choose the word length: from 4 to 9 letters.')
         print('• A hi-score will be displayed, reflecting the highest score attained by the player.')
@@ -440,7 +440,7 @@ def play_hangman(word_length, game_over, secret_word, secret_word_display, hi_sc
     Sets the variable hint = True.
     Creates a while loop for when variable game_over equals false.
     In the loop while not game_over:
-    Calls functions: guess = get_player_guess(), clear_screen(), display_hangman_logo('red', 'reset'),
+    Calls functions: guess = get_player_guess(), clear_screen(),
     lives = lose_life_incorrect_guess(guess, secret_word, letters_guessed, lives), current_score = update_current_score(word_length, current_score), 
     display_scoreboard(hi_score, current_score),add_correct_guess_to_display(guess, secret_word, secret_word_display), 
     display_stickman(lives), give_feedback_repeat_guess(guess, letters_guessed), give_feedback_incorrect_guess(guess, secret_word, letters_guessed), 
@@ -458,8 +458,6 @@ def play_hangman(word_length, game_over, secret_word, secret_word_display, hi_sc
         guess = get_player_guess()
         
         clear_screen()
-
-        display_hangman_logo('red', 'reset')
         
         lives = lose_life_incorrect_guess(guess, secret_word, letters_guessed, lives)
         
@@ -499,23 +497,23 @@ def play_hangman(word_length, game_over, secret_word, secret_word_display, hi_sc
 def get_player_replay():
     '''
     Gets the player answer whether wants to replay the game to increase their hi-score:
-    player_answer_replay = input('Would you like to play again to increase your score? y/n: ').lower()
+    player_answer_replay = input('Would you like to play again to increase your high score? y/n: ').lower()
     Handles answer error cases with a while True loop (try, except Exception as e, else) and gives the player feedback.
     Function returns player_answer_replay variable
     '''
     while True:
         try:
-            player_answer_replay = input('Would you like to play again to increase your score? y/n: ').lower()
+            player_answer_replay = input('Would you like to play again to increase your high score? y/n: ').lower()
             while True:
                 if player_answer_replay != 'y' and player_answer_replay != 'n':
                     print('\nError! Please answer with either the letter y (for yes) or n (for no).')
-                    player_answer_replay = input('Would you like to play again to increase your score? y/n: ').lower()
+                    player_answer_replay = input('Would you like to play again to increase your high score? y/n: ').lower()
                 elif re.match('^\s*$', player_answer_replay):
                     print('\nError! Please answer with either the letter y (for yes) or n (for no).')
-                    player_answer_replay = input('Would you like to play again to increase your score? y/n: ').lower()
+                    player_answer_replay = input('Would you like to play again to increase your high score? y/n: ').lower()
                 elif len(player_answer_replay) > 1:
                     print('\nError! Please answer with either the letter y (for yes) or n (for no).')
-                    player_answer_replay = input('Would you like to play again to increase your score? y/n: ').lower()
+                    player_answer_replay = input('Would you like to play again to increase your high score? y/n: ').lower()
                 else:
                     break
         except Exception as e:
@@ -536,8 +534,8 @@ def replay_hangman(hi_score):
     Resets variables: current_score = 0, secret_word = None, secret_word_display = [],
     letters_guessed = [], lives = 6, game_over = False
     Then the while loop calls the functions: clear_screen(), display_hangman_logo('red', 'reset'),
-    display_scoreboard(hi_score, current_score), word_length = get_player_word_length(), clear_screen(),
-    display_hangman_logo('red', 'reset'),  current_score = update_current_score(word_length, current_score, lives), 
+    word_length = get_player_word_length(), clear_screen(),
+    current_score = update_current_score(word_length, current_score, lives), 
     display_scoreboard(hi_score, current_score), secret_word = create_secret_word(word_length, secret_word), 
     display_secret_word(secret_word, secret_word_display), display_stickman(lives), 
     hi_score = play_hangman(word_length, game_over, secret_word, secret_word_display, hi_score, current_score, letters_guessed, lives),
@@ -556,14 +554,10 @@ def replay_hangman(hi_score):
         clear_screen()
 
         display_hangman_logo('red', 'reset')
-        
-        display_scoreboard(hi_score, current_score)
 
         word_length = get_player_word_length()
         
         clear_screen()
-
-        display_hangman_logo('red', 'reset')
 
         current_score = update_current_score(word_length, current_score, lives)
         
@@ -605,13 +599,9 @@ def main():
 
     display_hangman_instructions()
 
-    display_scoreboard(hi_score, current_score)
-
     word_length = get_player_word_length()
     
     clear_screen()
-
-    display_hangman_logo('red', 'reset')
 
     current_score = update_current_score(word_length, current_score, lives)
 
