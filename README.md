@@ -124,6 +124,12 @@ Hangman Game is based on the classic paper-and-pencil game. You can read more ab
 
 ![Game Validation and Error-checking Code](assets/images/game-error-code.png)
 
+### Future Features
+
+- Allow the player to input their name to provide a more personalised gaming experience.
+- Have a High Score for multiple players that is accessible even after resetting the game.
+- Allow the player the option to write the word in one go, when the player guesses the word.
+
 
 
 
