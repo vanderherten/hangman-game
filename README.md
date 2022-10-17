@@ -10,6 +10,31 @@ Users can test their knowledge of english vacabulary. The game will allow the us
 
 ---
 
+## Contents
+
+- [**How To Play**](#how-to-play)
+- [**Project Goals**](#project-goals)
+- [**UX - User Experience**](#ux---user-experience)
+    - [User Stories](#user-stories)
+- [**Design**](#design)
+    - [Features](#features)
+    - [Flowchart](#flowchart)
+- [**Features**](#features)
+    - [**Existing Features**](#existing-features)
+    - [**Future Features**](#future-features)
+- [**Technology Used**](#technology-used)
+    - [Languages](#languages)
+    - [Frameworks, Libraries & Programs](#frameworks-libraries-&-programs)       
+- [**Testing**](#testing)
+    - [Bugs](#bugs)
+    - [Remaining Bugs](#remaining-bugs)
+    - [Validator Testing](#validator-testing)
+- [**Deployment**](#deployment)
+- [**Credits**](#credits)
+- [**Acknowledgements**](#acknowledgements)
+
+---
+
 ## How To Play
 
 Hangman Game is based on the classic paper-and-pencil game. You can read more about it on [Wikipedia](https://en.wikipedia.org/wiki/Hangman_(game)). In this version: 
