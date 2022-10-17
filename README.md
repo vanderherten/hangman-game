@@ -133,11 +133,11 @@ Hangman Game is based on the classic paper-and-pencil game. You can read more ab
 
 ## Technology Used
 
-### Languages Used
+### Languages
 
 - [Python](https://www.python.org/)
 
-### Frameworks, Libraries & Programs Used
+### Frameworks, Libraries & Programs
 
 - [Git](https://git-scm.com/):
     - Git was used for version control by utilizing the Gitpod terminal to commit to Git and push to Github.
@@ -205,24 +205,3 @@ This project was deployed using Code Institute's mock terminal for Heroku.
     - Enter the name of the repository you want to connect it with and click 'Connect'.
     - There is a option to either deploy using automatic deploys or manual deployment, which deploys the current state of the branch.
     - Click deploy branch.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
