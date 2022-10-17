@@ -205,3 +205,10 @@ This project was deployed using Code Institute's mock terminal for Heroku.
     - Enter the name of the repository you want to connect it with and click 'Connect'.
     - There is a option to either deploy using automatic deploys or manual deployment, which deploys the current state of the branch.
     - Click deploy branch.
+
+
+## Acknowledgements
+
+- Thank you to my mentor Naoise Gaffney for giving me positive encouragement, guidance and support throughout the development process.
+- Thank you to [Code Institute](https://codeinstitute.net/) for their information, guidance and support.
+- Thank you to the Slack community for their support and information.
