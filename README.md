@@ -131,6 +131,46 @@ Hangman Game is based on the classic paper-and-pencil game. You can read more ab
 - Allow the player the option to write the word in one go, when the player guesses the word.
 
 
+## Testing
+
+I have manually tested this project by doing the following:
+
+- I have passed the code through a Python autopep8 linter and confirmed there are no problems. 
+
+![Testing Linter Install](assets/images/testing-linter-install.png)
+
+![Testing Linter Command](assets/images/testing-linter-command.png)
+
+- Given invalid inputs with all the game's input questions: strings when numbers are expected, numbers when strings are expected, out of bounds inputs, no input (enter key), empty space input, wrong number or letter inputs.
+
+![Testing Input](assets/images/testing-input.png)
+
+- Used a print statement in my local terminal to test if a different secret word is generated on every replay and if the secret word display functions correctly.
+
+![Testing Print Statement](assets/images/testing-print-statement.png)
+
+- Tested the word list in hangman_words.py: tested to make sure all words that I added to the word list got a synonym and definition returned when web scraped. Also implimented a feedback message in the case there is a change with the api and an empty list (synonym) or dictionary (definition) for a word gets returned in the future.
+
+![Testing Empty List](assets/images/testing-empty-list.png)
+
+![Testing Empty Dictionary](assets/images/testing-empty-dictionary.png)
+
+- Tested in my local terminal and the Code Institute Heroku terminal.
+
+### Bugs
+
+#### Solved Bugs
+
+- 
+
+### Remaining Bugs
+
+- No bugs remaining.
+
+### Validator Testing
+
+- PEP8
+    - No errors were returned from passing my code through the Python autopep8 linter.
 
 
 
