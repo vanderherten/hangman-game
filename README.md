@@ -179,7 +179,7 @@ I have manually tested this project by doing the following:
 
 #### Solved Bugs
 
-- 
+- [StackOverflow](https://stackoverflow.com/questions/52910297/pydictionary-word-has-no-synonyms-in-the-api) provided me a solution when the api requests send by PyDictionary didn't return any synonyms.
 
 ### Remaining Bugs
 
