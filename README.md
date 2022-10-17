@@ -207,6 +207,13 @@ This project was deployed using Code Institute's mock terminal for Heroku.
     - Click deploy branch.
 
 
+## Credits
+
+- Code Institute for the deployment terminal.
+- [Wikipedia](https://en.wikipedia.org/wiki/Hangman_(game)) for the details of the Hangman game. 
+- [StackOverflow](https://stackoverflow.com/questions/52910297/pydictionary-word-has-no-synonyms-in-the-api) provided me a solution when the api requests send by PyDictionary didn't return any synonyms.
+
+
 ## Acknowledgements
 
 - Thank you to my mentor Naoise Gaffney for giving me positive encouragement, guidance and support throughout the development process.
