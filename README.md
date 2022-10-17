@@ -61,3 +61,86 @@ Hangman Game is based on the classic paper-and-pencil game. You can read more ab
 
 ![Design Features](assets/images/design-flowchart.png)
 
+
+## Features
+
+### Existing Features
+
+- **Landing Page**
+
+![Landing Page](assets/images/landing-page.png)
+
+- **Landing Page Options**
+
+![Landing Page Options](assets/images/landing-page-options.png)
+
+- **Instructions**
+
+![Instructions](assets/images/instructions.png)
+
+- **Game Page**
+
+![Game Page](assets/images/game-page.png)
+
+- **Game Page Guess**
+
+![Game Page Guess Feedback](assets/images/game-page-guess.png)
+
+- **Game Page Life Feedback**
+
+![Game Page Life Feedback](assets/images/game-page-life.png)
+
+- **Game Page Hint Option**
+
+![Game Page Hint Option](assets/images/game-page-hint.png)
+
+- **Game Page Won Feedback**
+
+![Game Page Won Feedback](assets/images/game-page-won.png)
+
+- **Game Page Lost Feedback**
+
+![Game Page Lost Feedback](assets/images/game-page-lost.png)
+
+- **Game Page Definition Option**
+
+![Game Page Definition Option](assets/images/game-page-definition.png)
+
+- **Game Page Replay Option**
+
+![Game Page Replay Option](assets/images/game-page-replay.png)
+
+- **Game Replay Page**
+
+![Game Replay Page](assets/images/game-replay-page.png)
+
+- **Game Replay High Score**
+
+![Game Replay High Score](assets/images/game-replay-hi-score.png)
+
+- **Input validation and Error-checking**
+
+![Game Validation and Error-checking](assets/images/game-error.png)
+
+![Game Validation and Error-checking Code](assets/images/game-error-code.png)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
