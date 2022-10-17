@@ -167,7 +167,7 @@ I have manually tested this project by doing the following:
 
 ![Testing Print Statement](assets/images/testing-print-statement.png)
 
-- Tested the word list in hangman_words.py: tested to make sure all words that I added to the word list got a synonym and definition returned when web scraped. Also implimented a feedback message in the case there is a change with the api and an empty list (synonym) or dictionary (definition) for a word gets returned in the future.
+- Tested the word list in hangman_words.py: tested to make sure all words that I added to the word list got a synonym and definition returned when web scraped. Also implemented a feedback message in the case there is a change with the api and an empty list (synonym) or dictionary (definition) for a word gets returned in the future.
 
 ![Testing Empty List](assets/images/testing-empty-list.png)
 
