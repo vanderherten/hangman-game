@@ -293,6 +293,7 @@ This project was deployed using Code Institute's mock terminal for Heroku.
     - Enter the name of the repository you want to connect it with and click 'Connect'.
     - There is a option to either deploy using automatic deploys or manual deployment, which deploys the current state of the branch.
     - Click deploy branch.
+    - [View the live version of the Hangman Game project here.](https://hangman-game-ci.herokuapp.com/)
 
 
 ## Credits
