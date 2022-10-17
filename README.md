@@ -173,6 +173,22 @@ I have manually tested this project by doing the following:
     - No errors were returned from passing my code through the Python autopep8 linter.
 
 
+## Deployment
+
+This project was deployed using Code Institute's mock terminal for Heroku.
+
+- Steps for deployment:
+    - Fork or clone this repository.
+    - Log in Heroku.
+    - Click 'New' and select 'Create new app'.
+    - Choose a name for the app, region and click on 'Create app'.
+    - In 'Settings' buildpacks need to be added. Set the buildpacks to Python and NodeJS in that order. They install future dependencies that are needed outside the requirements file.
+    - In 'Deploy' section link the Heroku app to the repository by connecting it to github.
+    - Enter the name of the repository you want to connect it with and click 'Connect'.
+    - There is a option to either deploy using automatic deploys or manual deployment, which deploys the current state of the branch.
+    - Click deploy branch.
+
+
 
 
 
