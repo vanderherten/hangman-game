@@ -131,6 +131,24 @@ Hangman Game is based on the classic paper-and-pencil game. You can read more ab
 - Allow the player the option to write the word in one go, when the player guesses the word.
 
 
+## Technology Used
+
+### Languages Used
+
+- [Python](https://www.python.org/)
+
+### Frameworks, Libraries & Programs Used
+
+- [Git](https://git-scm.com/):
+    - Git was used for version control by utilizing the Gitpod terminal to commit to Git and push to Github.
+- [Github](https://github.com/):
+    - Github is used to store the project's code.
+- [Diagrams.net](https://app.diagrams.net/):
+    - Diagrams.net was used to create and store the features diagram and hangman flowchart.
+- [Heroku](https://www.heroku.com/):
+    - Heroku was used to deploy the live version of the terminal.
+
+
 ## Testing
 
 I have manually tested this project by doing the following:
@@ -187,6 +205,8 @@ This project was deployed using Code Institute's mock terminal for Heroku.
     - Enter the name of the repository you want to connect it with and click 'Connect'.
     - There is a option to either deploy using automatic deploys or manual deployment, which deploys the current state of the branch.
     - Click deploy branch.
+
+
 
 
 
