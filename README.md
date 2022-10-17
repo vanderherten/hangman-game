@@ -2,7 +2,7 @@
 
 Hangman Game is a Python terminal game, which runs in a mock terminal on Heroku.
 
-Users can test their knowledge of english vacabulary. The game will allow the user to choose the word length they would like to play. They have a choice from four to nine letters. The user gets six lives to try to guess the secret word. A scoreboard will be visible with the user's high score and current max score. The game will give the user the option to get a hint, the word synonyms, when only one life remains. If the user loses, the secret word will be revealed and the player can opt to get the word's definition. These extra features added to the classic game, gives the user an educative experience while playing this Hangman Game. The game also allows the user to replay the game to increase their high score, which adds a fun and competitive element as well.
+Users can test their knowledge of English vacabulary. The game will allow the user to choose the word length they would like to play. They have a choice from four to nine letters. The user gets six lives to try to guess the secret word. A scoreboard will be visible with the user's high score and current max score. The game will give the user the option to get a hint, the word synonyms, when only one life remains. If the user loses, the secret word will be revealed and the player can opt to get the word's definition. These extra features added to the classic game, gives the user an educative experience while playing this Hangman Game. The game also allows the user to replay the game to increase their high score, which adds a fun and competitive element as well.
 
 ![Responsive Mockup](assets/images/mockup.png)
 
@@ -40,7 +40,7 @@ Users can test their knowledge of english vacabulary. The game will allow the us
 Hangman Game is based on the classic paper-and-pencil game. You can read more about it on [Wikipedia](https://en.wikipedia.org/wiki/Hangman_(game)). In this version: 
 
 - At the start of every game the player gets to choose the word length: from 4 to 9 letters.
-- A hi-score will be displayed, reflecting the highest score attained by the player. A current max score will be calculated, which is the highest  attainable score for the game with the chosen word length.
+- A hi-score will be displayed, reflecting the highest score attained by the player. A current max score will be calculated, which is the highest attainable score for the game with the chosen word length.
 - The game starts with 6 lives and with every wrong letter guess the player will lose a life. Every new game will start with the current max score displayed which will decrease when the player loses a life.
 - When there is only one life left, the player will have the option to get a hint.
 - The player will win when having guessed all the word letters before losing all lives.
@@ -53,8 +53,8 @@ Hangman Game is based on the classic paper-and-pencil game. You can read more ab
 
 - To develop a fun educative python terminal game.
 - To develop a terminal game with great user experience.
-- To develop a game where the user can test their knowledge of english vocabulary.
-- To develop a game where the user can broaden their english vocabulary knowledge.
+- To develop a game where the user can test their knowledge of English vocabulary.
+- To develop a game where the user can broaden their English vocabulary knowledge.
 - To develop a game where the user is challenged to keep improving while playing.
 
 
@@ -108,7 +108,7 @@ Hangman Game is based on the classic paper-and-pencil game. You can read more ab
 - **Instructions**
 
     - The Instructions page explains to the user how the hangman game is played and what features to expect while playing the game.
-    - After the Instructions the user gets the option to choose their preferred word lenght for the game.
+    - After the Instructions the user gets the option to choose their preferred word length for the game.
 
 ![Instructions](assets/images/instructions.png)
 
@@ -117,7 +117,7 @@ Hangman Game is based on the classic paper-and-pencil game. You can read more ab
     - After having chosen a preferred word length for the game, the game page is displayed.
     - At the top a scoreboard is displayed with the High Score and Current Max Score. 
     - The High Score visualizes the highest score a player has attained when replaying the game.
-    - The Current Max Score visualizes the highest possible score to attain for the game. The Current Max score points are based on the chosen word length. The longer the word lenght, the higher the possible game points to score. When a player loses a life, the Current Max Score decreases. The points left in the Current Max Score at the end of the game will be the player final score for the game.
+    - The Current Max Score visualizes the highest possible score to attain for the game. The Current Max score points are based on the chosen word length. The longer the word length, the higher the possible game points to score. When a player loses a life, the Current Max Score decreases. The points left in the Current Max Score at the end of the game will be the player final score for the game.
     - The secret word is displayed with dashes, representing the hidden letters.
     - The player's lives are depicted through ASCI art. Every time the player loses a life, the stickman will be closer to getting hanged.
     - The player is prompted to 'guess a letter'.
@@ -126,7 +126,8 @@ Hangman Game is based on the classic paper-and-pencil game. You can read more ab
 
 - **Game Page Guess**
 
-    - 'Letters guessed' displays the letters the player has already put as an input in 'Guess a letter'. This feature allows the player to have an easy reference to the letters they have already used as guesses.
+    - 'Letters guessed' displays the letters the player has already put as an input in 'Guess a letter'. 
+    - This feature allows the player to have an easy reference to the letters they have already used as guesses.
 
 ![Game Page Guess](assets/images/game-page-guess.png)
 
@@ -176,14 +177,14 @@ Hangman Game is based on the classic paper-and-pencil game. You can read more ab
 
     - At the end of the game, the player gets the option to replay the game.
     - Replaying the game allows the user to increase their High Score.
-    - This feature makes the game more fun and engaging, while also adding a challenge to get better at guessing the game's words. 
+    - This feature makes the game more fun and engaging, while also adding a challenge to get better at guessing the game's word. 
     - This feature allows the user to keep track of their improvement progress, which gives a better user experience.
 
 ![Game Page Replay Option](assets/images/game-page-replay.png)
 
 - **Game Replay Page**
 
-    - If the user opted to replay the game, they get the choice to pick a new word lenght for the game. 
+    - If the user opted to replay the game, they get the choice to pick a new word length for the game. 
     - This feature allows the user to keep challenging themselves with longer words, or to have the option to also choose a shorter word as they see fit in relation to their progress.
 
 ![Game Replay Page](assets/images/game-replay-page.png)
